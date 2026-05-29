@@ -127,8 +127,20 @@ a {
   }
 }
 
+.testimonials-marquee-viewport {
+  overflow: hidden;
+}
+
 .testimonials-marquee-track {
-  animation: marquee-scroll 110s linear infinite;
+  animation: marquee-scroll var(--marquee-duration-mobile, var(--marquee-duration, 460s)) linear
+    infinite;
+  will-change: transform;
+}
+
+@media (width >= 48rem) {
+  .testimonials-marquee-track {
+    animation-duration: var(--marquee-duration, 460s);
+  }
 }
 
 .testimonials-marquee-track:hover {
@@ -136,7 +148,7 @@ a {
 }
 
 .testimonials-marquee-slow {
-  animation-duration: 70s;
+  animation-duration: calc(var(--marquee-duration, 460s) * 1.5);
 }
 
 .testimonials-marquee-reverse {
@@ -148,6 +160,7 @@ a {
     animation: none;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
     max-width: 72rem;
     margin-inline: auto;
     padding-inline: 1rem;

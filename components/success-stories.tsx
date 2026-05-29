@@ -2,9 +2,13 @@ import Link from "next/link";
 import FadeIn from "@/components/fade-in";
 import { marqueeTestimonials, type Testimonial } from "@/lib/testimonials";
 
+/** Desktop ~22s/card; mobile ~36s/card (set via CSS media query). */
+const SECONDS_PER_CARD_DESKTOP = 22;
+const SECONDS_PER_CARD_MOBILE = 36;
+
 function TestimonialBanner({ item }: { item: Testimonial }) {
   return (
-    <article className="card-lift mx-3 flex w-[min(100%,340px)] shrink-0 flex-col rounded-2xl border border-zinc-200 bg-white px-6 py-5 shadow-sm md:w-[380px]">
+    <article className="mx-3 flex w-[min(100%,340px)] shrink-0 flex-col rounded-2xl border border-zinc-200 bg-white px-6 py-5 shadow-sm md:w-[380px]">
       <p className="text-lg font-bold leading-snug text-orange-500">&ldquo;</p>
       <p className="-mt-2 line-clamp-5 flex-1 text-sm leading-relaxed text-zinc-800 md:text-base">
         {item.quote}
@@ -20,9 +24,20 @@ function TestimonialBanner({ item }: { item: Testimonial }) {
 }
 
 function TestimonialMarqueeRow({ items }: { items: Testimonial[] }) {
+  const durationDesktop = items.length * SECONDS_PER_CARD_DESKTOP;
+  const durationMobile = items.length * SECONDS_PER_CARD_MOBILE;
+
   return (
-    <div className="overflow-hidden py-2">
-      <div className="testimonials-marquee-track flex w-max">
+    <div className="testimonials-marquee-viewport py-2">
+      <div
+        className="testimonials-marquee-track flex w-max"
+        style={
+          {
+            "--marquee-duration": `${durationDesktop}s`,
+            "--marquee-duration-mobile": `${durationMobile}s`,
+          } as React.CSSProperties
+        }
+      >
         <div className="flex shrink-0">
           {items.map((item) => (
             <TestimonialBanner key={`a-${item.id}`} item={item} />
@@ -57,19 +72,19 @@ export default function SuccessStories() {
         </FadeIn>
       </div>
 
-      <FadeIn className="mt-10">
+      <div className="mt-10 overflow-hidden">
         <TestimonialMarqueeRow items={marqueeTestimonials} />
-      </FadeIn>
+      </div>
 
       <FadeIn>
         <p className="mt-8 text-center">
-        <Link
-          href="/testimonials/"
-          className="text-sm font-bold uppercase tracking-[0.1em] text-orange-600 hover:text-orange-700"
-        >
-          Read more testimonials →
-        </Link>
-      </p>
+          <Link
+            href="/testimonials/"
+            className="text-sm font-bold uppercase tracking-[0.1em] text-orange-600 hover:text-orange-700"
+          >
+            Read more testimonials →
+          </Link>
+        </p>
       </FadeIn>
     </section>
   );
