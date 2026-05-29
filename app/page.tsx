@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import EnquirySection from "@/components/enquiry-section";
 import FadeIn from "@/components/fade-in";
 import GetToKnowSection from "@/components/get-to-know-section";
@@ -7,14 +6,14 @@ import ProgrammeCards from "@/components/programme-cards";
 import SuccessStories from "@/components/success-stories";
 import YouTubeEmbed from "@/components/youtube-embed";
 
-export const metadata: Metadata = {
-  title: "Best Math Tuition in Singapore for Secondary & JC Students | Knockout Math",
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
+  title: "Best Math Tuition in Singapore for Secondary & JC Students",
   description:
-    "Achieve top results and unlock high-level career opportunities with the best Math tuition in Singapore. We have expert tutors, proven strategies, exam techniques, and 20+ years of experience to help students succeed.",
-  alternates: {
-    canonical: "https://www.knockoutmath.sg/",
-  },
-};
+    "Knockout Math — expert tuition in Bukit Timah for Secondary G3, E-Math, A-Math, IP, and JC H2. Ex-MOE tutors, KICK Method, proven O-Level and A-Level results. Book a free trial.",
+  path: "/",
+});
 
 const heroNavButtons = [
   { label: "Our Story", href: "/#our-story" },
@@ -30,11 +29,14 @@ export default function HomePage() {
     <div>
       <section className="bg-gradient-to-b from-zinc-50 to-white">
         <FadeIn className="mx-auto w-full max-w-4xl px-4 py-20 text-center md:px-6 md:py-28">
-          <h1 className="mx-auto max-w-prose text-2xl font-bold leading-snug text-zinc-800 md:text-3xl md:leading-snug">
-            Top-tier math tuition in Bukit Timah, backed by 20+ years of MOE experience. We make
-            numbers less scary and exams more manageable.
+          <h1 className="font-heading mx-auto max-w-prose text-2xl font-black uppercase leading-snug tracking-tight text-black md:text-4xl md:leading-tight">
+            Math tuition in Bukit Timah for Secondary, IP & JC students
           </h1>
-          <p className="mx-auto mt-6 max-w-prose text-2xl font-bold leading-snug text-orange-500 md:text-3xl md:leading-snug">
+          <p className="font-body mx-auto mt-6 max-w-prose text-lg leading-relaxed text-zinc-700 md:text-xl">
+            Knockout Math — 20+ years of MOE experience. We make numbers less scary and exams more
+            manageable.
+          </p>
+          <p className="mx-auto mt-4 max-w-prose text-xl font-bold leading-snug text-orange-500 md:text-2xl md:leading-snug">
             Because math shouldn&apos;t feel like a horror movie.
           </p>
 

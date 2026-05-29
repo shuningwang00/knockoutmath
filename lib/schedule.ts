@@ -1,3 +1,5 @@
+import { mainBranch } from "@/lib/contact";
+
 export type DayOfWeek = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
 
 export type ScheduleLevel = "p5" | "p6" | "sec1" | "sec2" | "sec3" | "sec4" | "jc1" | "jc2";
@@ -40,7 +42,7 @@ export type LevelFilter = "all" | ScheduleLevel;
 export const SCHEDULE_LOCATION = {
   name: "Beauty World Centre",
   address: "144 Upper Bukit Timah Road, #03-38, Beauty World Centre, Singapore 588177",
-  mapsHref: "https://maps.google.com/?q=Knockout+Math+Beauty+World+Centre",
+  mapsHref: mainBranch.mapsHref,
 };
 
 export const DAY_ORDER: DayOfWeek[] = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];

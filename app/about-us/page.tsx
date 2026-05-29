@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AboutComparison from "@/components/about-comparison";
@@ -7,16 +6,14 @@ import FadeIn from "@/components/fade-in";
 import PageHero from "@/components/page-hero";
 import PedagogySection from "@/components/pedagogy-section";
 import { aboutMission, teamSections } from "@/lib/about";
-import { SITE_URL } from "@/lib/site";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "About Knockout Math | Leading Math Tuition Centre in Bukit Timah, Singapore",
   description:
     "Meet Knockout Math — expert math tutors in Bukit Timah with 20+ years of MOE experience. Discover our mission, KICK Method, and why families choose us for Secondary, IP, and JC math tuition.",
-  alternates: {
-    canonical: `${SITE_URL}/about-us/`,
-  },
-};
+  path: "/about-us/",
+});
 
 const ctaClassName =
   "font-heading inline-flex rounded-full border-2 border-black bg-black px-8 py-3.5 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:border-orange-500 hover:bg-orange-500";

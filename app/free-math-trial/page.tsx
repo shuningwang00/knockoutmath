@@ -1,17 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import FreeTrialForm from "@/components/free-trial-form";
 import { freeTrialBenefits } from "@/lib/free-trial";
-import { SITE_URL } from "@/lib/site";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Free Math Trial Class | Knockout Math Bukit Timah",
+export const metadata = createPageMetadata({
+  title: "Free Math Trial Class | Bukit Timah",
   description:
     "Claim your free math trial at Knockout Math Bukit Timah. Experience a full interactive lesson, curated materials, and personalised feedback from our expert tutors.",
-  alternates: {
-    canonical: `${SITE_URL}/free-math-trial/`,
-  },
-};
+  path: "/free-math-trial/",
+});
 
 export default function FreeMathTrialPage() {
   return (

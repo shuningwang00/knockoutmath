@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import FadeIn from "@/components/fade-in";
-import type { ProgrammePageContent } from "@/lib/programme-pages/types";
+import type { ProgrammePageContent, ProgrammeTerm } from "@/lib/programme-pages/types";
 
 const ctaPrimary =
   "font-heading inline-flex rounded-full border-2 border-black bg-black px-8 py-3.5 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:border-orange-500 hover:bg-orange-500";
@@ -55,6 +55,10 @@ export function ProgrammeHero({ hero }: { hero: ProgrammePageContent["hero"] }) 
 function syllabusSectionId(level: string) {
   if (level.includes("Secondary 1")) return "secondary-1-scheme-of-work";
   if (level.includes("Secondary 2")) return "secondary-2-scheme-of-work";
+  if (level.includes("Secondary 3")) return "secondary-3-scheme-of-work";
+  if (level.includes("Secondary 4")) return "secondary-4-scheme-of-work";
+  if (level.includes("JC 1")) return "jc-1-scheme-of-work";
+  if (level.includes("JC 2")) return "jc-2-scheme-of-work";
   return level.toLowerCase().replace(/\s+/g, "-");
 }
 
@@ -80,7 +84,7 @@ function SyllabusChapterLine({ chapter }: { chapter: string }) {
   return <>{chapter}</>;
 }
 
-function SyllabusTermTable({ terms }: { terms: ProgrammePageContent["syllabi"][number]["terms"] }) {
+function SyllabusTermTable({ terms }: { terms: ProgrammeTerm[] }) {
   return (
     <div className="w-full overflow-hidden border border-black">
       {terms.map((term, index) => (
@@ -175,9 +179,11 @@ export function ProgrammeSyllabus({
   syllabi,
   fees,
 }: {
-  syllabi: ProgrammePageContent["syllabi"];
+  syllabi?: ProgrammePageContent["syllabi"];
   fees?: ProgrammePageContent["fees"];
 }) {
+  if (!syllabi?.length && !fees) return null;
+
   return (
     <section className="section-y border-y border-zinc-200 bg-[#f6f4ef]">
       <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
@@ -188,7 +194,7 @@ export function ProgrammeSyllabus({
         </FadeIn>
 
         <div className="mt-10 space-y-14">
-          {syllabi.map((syllabus, index) => (
+          {syllabi?.map((syllabus, index) => (
             <FadeIn key={syllabus.level} delay={index * 80}>
             <div
               id={syllabusSectionId(syllabus.level)}
@@ -198,7 +204,7 @@ export function ProgrammeSyllabus({
                 <h3 className="font-heading text-xl font-black uppercase tracking-tight text-black md:text-2xl">
                   {syllabus.level}
                 </h3>
-                <p className="font-body mt-3 max-w-prose text-sm leading-relaxed text-zinc-800 md:text-base">
+                <p className="font-body mt-3 max-w-prose whitespace-pre-line text-sm leading-relaxed text-zinc-800 md:text-base">
                   {syllabus.intro}
                 </p>
               </div>
@@ -209,7 +215,7 @@ export function ProgrammeSyllabus({
           ))}
 
           {fees ? (
-            <FadeIn delay={syllabi.length * 80}>
+            <FadeIn delay={(syllabi?.length ?? 0) * 80}>
             <div
               id="fees"
               className="scroll-mt-24 grid gap-6 border-t border-zinc-300/80 pt-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:items-start lg:gap-10"
@@ -219,8 +225,8 @@ export function ProgrammeSyllabus({
                   Fees
                 </h3>
                 <p className="font-body mt-3 max-w-prose text-sm leading-relaxed text-zinc-800 md:text-base">
-                  Straightforward pricing for our Secondary 1 and 2 G3 classes — materials
-                  included, with pro-rated options if you join mid-term.
+                  {fees.intro ??
+                    "Straightforward pricing for our Secondary 1 and 2 G3 classes — materials included, with pro-rated options if you join mid-term."}
                 </p>
               </div>
 
@@ -233,6 +239,16 @@ export function ProgrammeSyllabus({
                     {fees.unit}
                   </p>
                 </div>
+                {fees.bundle ? (
+                  <div className="border-b border-black bg-[#b8d4f0] px-4 py-3 text-center">
+                    <p className="font-heading text-xl font-black text-black md:text-2xl">
+                      {fees.bundle.amount}
+                    </p>
+                    <p className="font-heading mt-0.5 text-xs font-bold uppercase tracking-[0.12em] text-black/80">
+                      {fees.bundle.label}
+                    </p>
+                  </div>
+                ) : null}
                 <ul className="space-y-2 bg-[#f6f4ef] px-4 py-4">
                   {fees.notes.map((note) => (
                     <li
@@ -257,9 +273,11 @@ export function ProgrammeSyllabus({
 export function ProgrammeBottomCta({
   referral,
   successStories,
+  enroll,
 }: {
   referral: ProgrammePageContent["referral"];
   successStories: ProgrammePageContent["successStories"];
+  enroll: ProgrammePageContent["enroll"];
 }) {
   return (
     <>
@@ -291,8 +309,7 @@ export function ProgrammeBottomCta({
             Ready to enroll?
           </h2>
           <p className="font-body mx-auto mt-4 max-w-prose text-base leading-relaxed text-zinc-300">
-            Classes are $280 per 4 lessons. Secure a spot in our Lower Secondary G3 classes or
-            book a free trial at our Bukit Timah centre.
+            {enroll.body}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link href="/schedule/" className={ctaOrange}>

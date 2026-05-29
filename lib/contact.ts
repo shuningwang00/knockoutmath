@@ -17,8 +17,7 @@ export const mainBranch = {
   label: "Main Branch",
   name: "Beauty World Centre",
   address: "144 Upper Bukit Timah Road, #03-38, Beauty World Centre, Singapore 588177",
-  mapsHref:
-    "https://www.google.com/maps/search/?api=1&query=144+Upper+Bukit+Timah+Road+%2303-38+Beauty+World+Centre+Singapore+588177",
+  mapsHref: "https://maps.app.goo.gl/GNBDDtaTHyvb4he27",
   mapEmbedUrl:
     "https://maps.google.com/maps?q=144+Upper+Bukit+Timah+Road+%2303-38+Beauty+World+Centre+Singapore+588177&z=16&output=embed",
 };

@@ -1,21 +1,19 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import EnquirySection from "@/components/enquiry-section";
 import FadeIn from "@/components/fade-in";
+import GoogleReviewsBadge from "@/components/google-reviews-badge";
 import TestimonialCard from "@/components/testimonial-card";
 import { pageTestimonials } from "@/lib/testimonials-page";
+import { createPageMetadata } from "@/lib/seo";
 import { testimonialsJsonLd } from "@/lib/structured-data";
-import { SITE_URL } from "@/lib/site";
 import JsonLd from "@/components/json-ld";
 
-export const metadata: Metadata = {
-  title: "Student Reviews & Success Stories | Knockout Math Tuition Singapore",
+export const metadata = createPageMetadata({
+  title: "Student Reviews & Success Stories | Math Tuition Singapore",
   description:
     "Read what students and parents say about Knockout Math in Bukit Timah — real reviews from Secondary, IP, and JC math tuition with proven grade improvements.",
-  alternates: {
-    canonical: `${SITE_URL}/testimonials/`,
-  },
-};
+  path: "/testimonials/",
+});
 
 const ctaClassName =
   "font-heading inline-flex rounded-full border-2 border-black bg-black px-8 py-3.5 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:border-orange-500 hover:bg-orange-500";
@@ -39,6 +37,9 @@ export default function TestimonialsPage() {
             Real stories from students and parents at our Bukit Timah centre — from first-time
             confidence boosts to O-Level and A-Level breakthroughs with the KICK Method.
           </p>
+          <div className="mt-6 flex justify-center">
+            <GoogleReviewsBadge />
+          </div>
         </FadeIn>
       </section>
 

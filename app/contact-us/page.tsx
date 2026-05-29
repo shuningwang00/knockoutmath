@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import ContactFaq from "@/components/contact-faq";
 import EnquiryForm from "@/components/enquiry-form";
@@ -16,19 +15,18 @@ import {
   openingHours,
   secondBranch,
 } from "@/lib/contact";
+import { createPageMetadata } from "@/lib/seo";
 import { faqPageJsonLd } from "@/lib/structured-data";
 import { SITE_URL, WHATSAPP_URL } from "@/lib/site";
 
 const contactPageUrl = `${SITE_URL}/contact-us/`;
 
-export const metadata: Metadata = {
-  title: "Contact Knockout Math | Enquire About Our Math Tuition in Singapore",
+export const metadata = createPageMetadata({
+  title: "Contact Us | Enquire About Math Tuition in Singapore",
   description:
     "Get in touch with Knockout Math Bukit Timah. WhatsApp us, submit an enquiry, find directions to Beauty World Centre, or read our FAQ about programmes and enrolment.",
-  alternates: {
-    canonical: `${SITE_URL}/contact-us/`,
-  },
-};
+  path: "/contact-us/",
+});
 
 const navButtonClassName =
   "font-heading rounded-full border-2 border-black bg-black px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-white transition hover:border-orange-500 hover:bg-orange-500 md:text-sm";

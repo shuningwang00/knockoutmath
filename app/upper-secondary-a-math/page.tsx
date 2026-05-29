@@ -7,16 +7,16 @@ import {
   ProgrammeHighlights,
   ProgrammeSyllabus,
 } from "@/components/programme-page-sections";
-import { lowerSecondaryProgramme } from "@/lib/programme-pages/lower-secondary";
+import { upperSecondaryAMathProgramme } from "@/lib/programme-pages/upper-secondary-a-math";
 import { programmePageMetadata } from "@/lib/seo";
 import { courseJsonLd } from "@/lib/structured-data";
 import JsonLd from "@/components/json-ld";
 
-const programme = lowerSecondaryProgramme;
+const programme = upperSecondaryAMathProgramme;
 
 export const metadata: Metadata = programmePageMetadata(programme);
 
-export default function LowerSecondaryMathPage() {
+export default function UpperSecondaryAMathPage() {
   return (
     <div>
       <JsonLd data={courseJsonLd(programme)} />

@@ -45,11 +45,16 @@ export type ProgrammePageContent = {
     featuresTitle: string;
     features: ProgrammeFeatureGroup[];
   };
-  syllabi: ProgrammeSyllabus[];
-  fees: {
+  syllabi?: ProgrammeSyllabus[];
+  fees?: {
     amount: string;
     unit: string;
     notes: string[];
+    intro?: string;
+    bundle?: {
+      amount: string;
+      label: string;
+    };
   };
   referral: {
     title: string;
@@ -59,5 +64,8 @@ export type ProgrammePageContent = {
     title: string;
     body: string;
     href: string;
+  };
+  enroll: {
+    body: string;
   };
 };

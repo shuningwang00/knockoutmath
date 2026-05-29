@@ -3,7 +3,7 @@ import type { ProgrammePageContent } from "@/lib/programme-pages/types";
 export const lowerSecondaryProgramme: ProgrammePageContent = {
   slug: "/secondary-math-tuition/",
   metadata: {
-    title: "Lower Secondary G3 Math Tuition | Secondary 1 & 2 | Knockout Math",
+    title: "Lower Secondary G3 Math Tuition | Secondary 1 & 2",
     description:
       "Build a strong foundation in Secondary 1 and 2 G3 Math at Knockout Math Bukit Timah. MOE-aligned curriculum, KICK Method, and expert tutors for problem-solving and confidence.",
   },
@@ -174,5 +174,8 @@ export const lowerSecondaryProgramme: ProgrammePageContent = {
     title: "Hear From Our Students",
     body: "At Knockout Math Bukit Timah, our classes have helped students improve with our unique KICK curriculum. Read our success stories and see why families choose us for math tuition in Bukit Timah.",
     href: "/testimonials/",
+  },
+  enroll: {
+    body: "Classes are $280 per 4 lessons. Secure a spot in our Lower Secondary G3 classes or book a free trial at our Bukit Timah centre.",
   },
 };

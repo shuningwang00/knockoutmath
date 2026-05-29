@@ -1,19 +1,16 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import EnquirySection from "@/components/enquiry-section";
 import ProgrammeObjectives from "@/components/schedule/programme-objectives";
 import ScheduleView from "@/components/schedule/schedule-view";
 import { SCHEDULE_LOCATION } from "@/lib/schedule";
-import { SITE_URL } from "@/lib/site";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "2026 Class Schedule | Math Tuition Timetable | Knockout Math",
+export const metadata = createPageMetadata({
+  title: "2026 Class Schedule | Math Tuition Timetable",
   description:
     "View Knockout Math's 2026 class schedule for Primary, Secondary, and JC H2 Math tuition at our Bukit Timah centre. Filter by level, check availability, and book a free trial.",
-  alternates: {
-    canonical: `${SITE_URL}/schedule/`,
-  },
-};
+  path: "/schedule/",
+});
 
 export default function SchedulePage() {
   return (

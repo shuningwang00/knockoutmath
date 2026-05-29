@@ -43,7 +43,7 @@ export default function ProgrammeFoundationNav({
 
         <FadeIn delay={100}>
           <div>
-            <p className="font-body max-w-prose text-base leading-relaxed text-zinc-800 md:text-lg">
+            <p className="font-body max-w-prose whitespace-pre-line text-base leading-relaxed text-zinc-800 md:text-lg">
               {foundation.intro}
             </p>
 

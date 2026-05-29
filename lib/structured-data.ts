@@ -1,3 +1,4 @@
+import type { GooglePlaceRating } from "@/lib/google-reviews";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
@@ -7,14 +8,14 @@ import {
 } from "@/lib/contact";
 import type { ProgrammePageContent } from "@/lib/programme-pages/types";
 import type { PageTestimonial } from "@/lib/testimonials-page";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, FACEBOOK_URL, GOOGLE_MAPS_URL, INSTAGRAM_URL, YOUTUBE_URL } from "@/lib/site";
 
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 
 const LOGO_URL = `${SITE_URL}/logo-icon-dark.png`;
 
 /** Site-wide LocalBusiness + EducationalOrganization — add once in root layout. */
-export function organizationJsonLd() {
+export function organizationJsonLd(googleRating?: GooglePlaceRating | null) {
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -30,6 +31,17 @@ export function organizationJsonLd() {
           "Math tuition centre in Bukit Timah, Singapore — Secondary, IP, and JC programmes helmed by ex-MOE tutors using the KICK Method.",
         telephone: CONTACT_PHONE,
         email: CONTACT_EMAIL,
+        ...(googleRating
+          ? {
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: googleRating.rating.toFixed(1),
+                reviewCount: String(googleRating.reviewCount),
+                bestRating: "5",
+                worstRating: "1",
+              },
+            }
+          : {}),
         areaServed: {
           "@type": "Country",
           name: "Singapore",
@@ -79,9 +91,7 @@ export function organizationJsonLd() {
             closes: "18:00",
           },
         ],
-        sameAs: [
-          "https://www.google.com/maps/search/?api=1&query=144+Upper+Bukit+Timah+Road+%2303-38+Beauty+World+Centre+Singapore+588177",
-        ],
+        sameAs: [FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL, GOOGLE_MAPS_URL],
       },
       {
         "@type": "WebSite",
@@ -91,6 +101,33 @@ export function organizationJsonLd() {
         publisher: { "@id": ORGANIZATION_ID },
       },
     ],
+  };
+}
+
+function courseOfferJsonLd(
+  fees: NonNullable<ProgrammePageContent["fees"]>,
+  courseUrl: string,
+) {
+  const price = fees.amount.replace(/[^\d.]/g, "");
+
+  return {
+    "@type": "Offer",
+    price,
+    priceCurrency: "SGD",
+    description: `${fees.amount} ${fees.unit}`,
+    url: courseUrl,
+    availability: "https://schema.org/InStock",
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price,
+      priceCurrency: "SGD",
+      name: fees.unit,
+      referenceQuantity: {
+        "@type": "QuantitativeValue",
+        value: "4",
+        unitText: "lessons",
+      },
+    },
   };
 }
 
@@ -109,14 +146,11 @@ export function courseJsonLd(programme: ProgrammePageContent) {
     educationalLevel: programme.hero.subtitle,
     teaches: "Mathematics",
     inLanguage: "en",
-    offers: {
-      "@type": "Offer",
-      price: programme.fees.amount.replace(/[^\d.]/g, ""),
-      priceCurrency: "SGD",
-      description: programme.fees.unit,
-      url: courseUrl,
-      availability: "https://schema.org/InStock",
-    },
+    ...(programme.fees
+      ? {
+          offers: courseOfferJsonLd(programme.fees, courseUrl),
+        }
+      : {}),
   };
 }
 

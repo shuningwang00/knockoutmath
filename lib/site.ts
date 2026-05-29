@@ -1,6 +1,20 @@
+import { mainBranch } from "@/lib/contact";
+
 export const SITE_URL = "https://www.knockoutmath.sg";
 
 export const WHATSAPP_URL = "https://wa.me/6584760600";
+
+export const FACEBOOK_URL = "https://www.facebook.com/knockoutmath.sg/";
+export const INSTAGRAM_URL = "https://www.instagram.com/knockoutmath.sg/";
+export const YOUTUBE_URL = "https://www.youtube.com/@KnockoutMathSingapore";
+export const GOOGLE_MAPS_URL = mainBranch.mapsHref;
+
+export const socialLinks: SiteLink[] = [
+  { label: "Facebook", href: FACEBOOK_URL },
+  { label: "Instagram", href: INSTAGRAM_URL },
+  { label: "YouTube", href: YOUTUBE_URL },
+  { label: "Google Maps", href: GOOGLE_MAPS_URL },
+];
 
 export type SiteLink = {
   label: string;

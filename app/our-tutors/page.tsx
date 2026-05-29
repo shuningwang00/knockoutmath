@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import EnquirySection from "@/components/enquiry-section";
@@ -6,6 +5,7 @@ import FadeIn from "@/components/fade-in";
 import JsonLd from "@/components/json-ld";
 import PageHero from "@/components/page-hero";
 import TutorTimeline from "@/components/tutor-timeline";
+import { createPageMetadata } from "@/lib/seo";
 import { principalTutorJsonLd } from "@/lib/structured-data";
 import { SITE_URL } from "@/lib/site";
 import {
@@ -15,14 +15,14 @@ import {
   tutorWelcomeParagraphs,
 } from "@/lib/tutors";
 
-export const metadata: Metadata = {
-  title: "Our Tutors | Expert Math Tutors in Bukit Timah | Knockout Math",
+export const metadata = createPageMetadata({
+  title: "Our Tutors | Expert Math Tutors in Bukit Timah",
   description:
     "Meet the Knockout Math tutor team led by Principal Tutor Peng Junyang — 20+ years of MOE and tuition centre experience in Secondary, IP, and JC math.",
-  alternates: {
-    canonical: `${SITE_URL}/our-tutors/`,
-  },
-};
+  path: "/our-tutors/",
+  image: principalTutor.image,
+  imageAlt: `${principalTutor.name} — Principal Tutor at Knockout Math`,
+});
 
 const ctaClassName =
   "font-heading inline-flex rounded-full border-2 border-black bg-black px-8 py-3.5 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:border-orange-500 hover:bg-orange-500";

@@ -11,17 +11,6 @@ function CircleLinkIcon() {
   );
 }
 
-function BlogLinkIcon() {
-  return (
-    <svg className="h-4 w-4 shrink-0" viewBox="0 0 16 16" fill="currentColor" aria-hidden>
-      <circle cx="4" cy="4" r="2" />
-      <circle cx="12" cy="4" r="2" />
-      <circle cx="4" cy="12" r="2" />
-      <circle cx="12" cy="12" r="2" />
-    </svg>
-  );
-}
-
 function SectionLink({
   href,
   label,
@@ -66,28 +55,26 @@ export default function GetToKnowSection() {
             </h2>
 
             <p className="font-body mt-6 max-w-prose text-base leading-relaxed text-zinc-800 md:text-[1.05rem]">
-            At Knockout Math, our team of top math tutors brings more than just expertise — we
-            bring passion, energy, and a fresh perspective on math tuition here at our Bukit Timah
-            classrooms. Whether it&apos;s Secondary Math tuition, IP math, or JC tuition,
-            we&apos;re here to shape your child&apos;s success through proven strategies and
-            personal guidance.
+              At Knockout Math, our team of top math tutors brings more than just expertise — we
+              bring passion, energy, and a fresh perspective on math tuition here at our Bukit Timah
+              classrooms. Whether it&apos;s Secondary Math tuition, IP math, or JC tuition,
+              we&apos;re here to shape your child&apos;s success through proven strategies and
+              personal guidance.
             </p>
 
             <p className="font-body mt-5 max-w-prose text-base leading-relaxed text-zinc-800 md:text-[1.05rem]">
-            Discover why students and parents trust us for O-Level and A-Level math tuition with
-            experienced Singapore math tutors who care.
-          </p>
+              Discover why students and parents trust us for O-Level and A-Level math tuition with
+              experienced Singapore math tutors who care.
+            </p>
 
             <SectionLink href="/about-us/" label="About Us" icon={<CircleLinkIcon />} />
 
             <p className="font-body mt-8 max-w-prose text-base leading-relaxed text-zinc-800 md:text-[1.05rem]">
-            Want expert advice on helping your child excel in secondary math tuition, IP math, or JC
-            tuition? Our blog is packed with practical strategies, exam tips, and insights from top
-            math tutors in Bukit Timah. Whether it&apos;s O-Level or A-Level tuition, discover how
-            to make Singapore Math easier and more effective for your child.
-          </p>
+              Meet our principal tutor, explore our KICK Method pedagogy, and see how we help
+              students from Secondary through JC build lasting confidence in math.
+            </p>
 
-            <SectionLink href="/blog/" label="Blog" icon={<BlogLinkIcon />} />
+            <SectionLink href="/our-tutors/" label="Our Tutors" icon={<CircleLinkIcon />} />
           </div>
         </div>
       </section>

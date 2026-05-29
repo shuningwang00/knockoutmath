@@ -7,6 +7,8 @@ import Footer from "@/components/footer";
 import TeachingMarquee from "@/components/teaching-marquee";
 import WhatsAppButton from "@/components/whatsapp-button";
 import { organizationJsonLd } from "@/lib/structured-data";
+import { getGooglePlaceRating } from "@/lib/google-reviews";
+import { siteOpenGraphDefaults } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 
 const outfit = Outfit({
@@ -27,13 +29,16 @@ export const metadata: Metadata = {
     icon: "/logo-icon-dark.png",
     apple: "/logo-icon-dark.png",
   },
+  ...siteOpenGraphDefaults,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const googleRating = await getGooglePlaceRating();
+
   return (
     <html lang="en" className={outfit.variable}>
       <body className="min-h-screen bg-white font-sans text-black antialiased">
-        <JsonLd data={organizationJsonLd()} />
+        <JsonLd data={organizationJsonLd(googleRating)} />
         <div className="flex min-h-screen flex-col">
           <Navbar />
           <TeachingMarquee />
