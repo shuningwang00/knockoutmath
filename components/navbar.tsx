@@ -10,7 +10,7 @@ export default function Navbar() {
   const [programmesOpen, setProgrammesOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-900/10 bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-zinc-900/10 bg-[#f6f4ef]/95 backdrop-blur">
       <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 md:px-6">
         <Link href="/" className="flex items-center">
           <Logo
@@ -50,12 +50,12 @@ export default function Navbar() {
                   : "invisible pointer-events-none opacity-0"
               }`}
             >
-              <div className="rounded-xl border border-zinc-200 bg-white p-2 shadow-lg">
+              <div className="rounded-xl border border-zinc-200 bg-[#f6f4ef] p-2 shadow-lg">
                 {programmeLinks.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="font-heading block rounded-lg px-3 py-2 text-sm font-semibold uppercase tracking-[0.08em] text-zinc-700 hover:bg-zinc-100 hover:text-black"
+                    className="font-heading block rounded-lg px-3 py-2 text-sm font-semibold uppercase tracking-[0.08em] text-zinc-700 hover:bg-white/80 hover:text-black"
                   >
                     {item.label}
                   </Link>
@@ -77,7 +77,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md text-zinc-800 transition hover:bg-zinc-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md text-zinc-800 transition hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 md:hidden"
           onClick={() => setMobileOpen((prev) => !prev)}
           aria-expanded={mobileOpen}
           aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -87,14 +87,14 @@ export default function Navbar() {
       </nav>
 
       {mobileOpen ? (
-        <div className="space-y-2 border-t border-zinc-200 px-4 py-4 md:hidden">
+        <div className="space-y-2 border-t border-zinc-300/80 bg-[#f6f4ef] px-4 py-4 md:hidden">
           {[...primaryNavLinks.slice(0, 2), ...programmeLinks, ...primaryNavLinks.slice(2)].map(
             (item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="block rounded-md px-3 py-2 font-heading text-sm font-semibold uppercase tracking-[0.08em] text-zinc-800 hover:bg-zinc-100"
+                className="block rounded-md px-3 py-2 font-heading text-sm font-semibold uppercase tracking-[0.08em] text-zinc-800 hover:bg-white/80"
               >
                 {item.label}
               </Link>
