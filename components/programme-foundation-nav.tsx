@@ -1,6 +1,7 @@
 "use client";
 
 import HashLink from "@/components/hash-link";
+import FadeIn from "@/components/fade-in";
 import type { ProgrammePageContent } from "@/lib/programme-pages/types";
 
 function NavIcon({ type }: { type: "star" | "bookmark" }) {
@@ -25,23 +26,26 @@ export default function ProgrammeFoundationNav({
   foundation: ProgrammePageContent["foundation"];
 }) {
   return (
-    <section className="scroll-mt-24 border-b border-zinc-200 bg-[#f6f4ef] py-14 md:py-20">
+    <section className="section-y scroll-mt-24 border-b border-zinc-200 bg-[#f6f4ef]">
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 md:grid-cols-2 md:items-start md:gap-16 md:px-6 lg:gap-24">
-        <div>
-          <h2 className="font-heading text-3xl font-black uppercase leading-[1.05] tracking-tight text-black md:text-5xl lg:text-6xl">
-            {foundation.titleLines.map((line) => (
-              <span key={line} className="block">
-                {line}
-              </span>
-            ))}
-          </h2>
-          <div className="mt-6 h-1.5 w-28 bg-black" aria-hidden />
-        </div>
+        <FadeIn>
+          <div>
+            <h2 className="font-heading text-3xl font-black uppercase leading-[1.05] tracking-tight text-black md:text-5xl lg:text-6xl">
+              {foundation.titleLines.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </h2>
+            <div className="mt-6 h-1.5 w-28 bg-black" aria-hidden />
+          </div>
+        </FadeIn>
 
-        <div>
-          <p className="font-body text-base leading-relaxed text-zinc-800 md:text-lg">
-            {foundation.intro}
-          </p>
+        <FadeIn delay={100}>
+          <div>
+            <p className="font-body max-w-prose text-base leading-relaxed text-zinc-800 md:text-lg">
+              {foundation.intro}
+            </p>
 
           <nav className="mt-10" aria-label="Programme sections">
             <ul>
@@ -60,7 +64,8 @@ export default function ProgrammeFoundationNav({
               ))}
             </ul>
           </nav>
-        </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

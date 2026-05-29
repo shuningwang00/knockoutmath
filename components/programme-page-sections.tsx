@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import FadeIn from "@/components/fade-in";
 import type { ProgrammePageContent } from "@/lib/programme-pages/types";
 
 const ctaPrimary =
@@ -114,23 +115,28 @@ export function ProgrammeHighlights({
   highlights: ProgrammePageContent["highlights"];
 }) {
   return (
-    <section id="programme-features" className="scroll-mt-24 bg-white py-14 md:py-20">
+    <section id="programme-features" className="section-y scroll-mt-24 bg-white">
       <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
-        <h2 className="font-heading text-center text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
-          {highlights.title}
-        </h2>
+        <FadeIn>
+          <h2 className="font-heading text-center text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
+            {highlights.title}
+          </h2>
+        </FadeIn>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-2">
-          <article className="rounded-2xl border border-zinc-200 bg-[#f6f4ef] p-6 md:p-8">
-            <h3 className="font-heading text-lg font-bold uppercase tracking-[0.1em] text-black">
-              {highlights.moeTitle}
-            </h3>
-            <p className="font-body mt-4 text-base leading-relaxed text-zinc-800">
-              {highlights.moeBody}
-            </p>
-          </article>
+          <FadeIn delay={80}>
+            <article className="card-lift h-full rounded-2xl border border-zinc-200 bg-[#f6f4ef] p-6 md:p-8">
+              <h3 className="font-heading text-lg font-bold uppercase tracking-[0.1em] text-black">
+                {highlights.moeTitle}
+              </h3>
+              <p className="font-body mt-4 max-w-prose text-base leading-relaxed text-zinc-800">
+                {highlights.moeBody}
+              </p>
+            </article>
+          </FadeIn>
 
-          <article className="rounded-2xl border border-zinc-200 bg-white p-6 md:p-8">
+          <FadeIn delay={160}>
+            <article className="card-lift h-full rounded-2xl border border-zinc-200 bg-white p-6 md:p-8">
             <h3 className="font-heading text-lg font-bold uppercase tracking-[0.1em] text-black">
               {highlights.featuresTitle}
             </h3>
@@ -158,6 +164,7 @@ export function ProgrammeHighlights({
               ))}
             </ul>
           </article>
+          </FadeIn>
         </div>
       </div>
     </section>
@@ -172,16 +179,18 @@ export function ProgrammeSyllabus({
   fees?: ProgrammePageContent["fees"];
 }) {
   return (
-    <section className="border-y border-zinc-200 bg-[#f6f4ef] py-14 md:py-20">
+    <section className="section-y border-y border-zinc-200 bg-[#f6f4ef]">
       <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
-        <h2 className="font-heading text-center text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
-          Scheme of Work
-        </h2>
+        <FadeIn>
+          <h2 className="font-heading text-center text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
+            Scheme of Work
+          </h2>
+        </FadeIn>
 
         <div className="mt-10 space-y-14">
-          {syllabi.map((syllabus) => (
+          {syllabi.map((syllabus, index) => (
+            <FadeIn key={syllabus.level} delay={index * 80}>
             <div
-              key={syllabus.level}
               id={syllabusSectionId(syllabus.level)}
               className="scroll-mt-24 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:items-start lg:gap-10"
             >
@@ -189,16 +198,18 @@ export function ProgrammeSyllabus({
                 <h3 className="font-heading text-xl font-black uppercase tracking-tight text-black md:text-2xl">
                   {syllabus.level}
                 </h3>
-                <p className="font-body mt-3 text-sm leading-relaxed text-zinc-800 md:text-base">
+                <p className="font-body mt-3 max-w-prose text-sm leading-relaxed text-zinc-800 md:text-base">
                   {syllabus.intro}
                 </p>
               </div>
 
               <SyllabusTermTable terms={syllabus.terms} />
             </div>
+            </FadeIn>
           ))}
 
           {fees ? (
+            <FadeIn delay={syllabi.length * 80}>
             <div
               id="fees"
               className="scroll-mt-24 grid gap-6 border-t border-zinc-300/80 pt-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:items-start lg:gap-10"
@@ -207,7 +218,7 @@ export function ProgrammeSyllabus({
                 <h3 className="font-heading text-xl font-black uppercase tracking-tight text-black md:text-2xl">
                   Fees
                 </h3>
-                <p className="font-body mt-3 text-sm leading-relaxed text-zinc-800 md:text-base">
+                <p className="font-body mt-3 max-w-prose text-sm leading-relaxed text-zinc-800 md:text-base">
                   Straightforward pricing for our Secondary 1 and 2 G3 classes — materials
                   included, with pro-rated options if you join mid-term.
                 </p>
@@ -235,6 +246,7 @@ export function ProgrammeSyllabus({
                 </ul>
               </div>
             </div>
+            </FadeIn>
           ) : null}
         </div>
       </div>
@@ -251,30 +263,34 @@ export function ProgrammeBottomCta({
 }) {
   return (
     <>
-      <section className="bg-white py-14 md:py-16">
+      <section className="section-y bg-white">
         <div className="mx-auto w-full max-w-6xl space-y-8 px-4 md:px-6">
-          <ReferralCallout referral={referral} />
+          <FadeIn>
+            <ReferralCallout referral={referral} />
+          </FadeIn>
 
-          <article className="rounded-2xl border border-zinc-200 bg-[#f6f4ef] p-8 md:p-10">
-            <h2 className="font-heading text-xl font-black uppercase tracking-tight text-black md:text-2xl">
-              {successStories.title}
-            </h2>
-            <p className="font-body mt-4 max-w-3xl text-base leading-relaxed text-zinc-800">
-              {successStories.body}
-            </p>
+          <FadeIn delay={100}>
+            <article className="card-lift rounded-2xl border border-zinc-200 bg-[#f6f4ef] p-8 md:p-10">
+              <h2 className="font-heading text-xl font-black uppercase tracking-tight text-black md:text-2xl">
+                {successStories.title}
+              </h2>
+              <p className="font-body mt-4 max-w-prose text-base leading-relaxed text-zinc-800">
+                {successStories.body}
+              </p>
             <Link href={successStories.href} className={`${ctaPrimary} mt-6`}>
               Read testimonials
             </Link>
           </article>
+          </FadeIn>
         </div>
       </section>
 
       <section id="enroll" className="scroll-mt-24 bg-black py-12 text-center md:py-14">
-        <div className="mx-auto w-full max-w-3xl px-4 md:px-6">
+        <FadeIn className="mx-auto w-full max-w-3xl px-4 md:px-6">
           <h2 className="font-heading text-2xl font-black uppercase tracking-tight text-white md:text-3xl">
             Ready to enroll?
           </h2>
-          <p className="font-body mt-4 text-base leading-relaxed text-zinc-300">
+          <p className="font-body mx-auto mt-4 max-w-prose text-base leading-relaxed text-zinc-300">
             Classes are $280 per 4 lessons. Secure a spot in our Lower Secondary G3 classes or
             book a free trial at our Bukit Timah centre.
           </p>
@@ -286,7 +302,7 @@ export function ProgrammeBottomCta({
               Free trial
             </Link>
           </div>
-        </div>
+        </FadeIn>
       </section>
     </>
   );

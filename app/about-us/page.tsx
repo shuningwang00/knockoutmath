@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AboutComparison from "@/components/about-comparison";
 import EnquirySection from "@/components/enquiry-section";
+import FadeIn from "@/components/fade-in";
 import PageHero from "@/components/page-hero";
 import PedagogySection from "@/components/pedagogy-section";
 import { aboutMission, teamSections } from "@/lib/about";
@@ -35,18 +36,18 @@ export default function AboutUsPage() {
         subtitle={aboutMission}
       />
 
-      <section className="border-y border-zinc-200 bg-[#f6f4ef] py-14 md:py-20">
+      <section className="section-y border-y border-zinc-200 bg-[#f6f4ef]">
         <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
-          <h2 className="font-heading text-center text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
-            The Team
-          </h2>
+          <FadeIn>
+            <h2 className="font-heading text-center text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
+              The Team
+            </h2>
+          </FadeIn>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-2">
             {teamSections.map((section, index) => (
-              <article
-                key={section.title}
-                className="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm"
-              >
+              <FadeIn key={section.title} delay={index * 100}>
+                <article className="card-lift overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
                 <div className="relative aspect-[16/10] w-full">
                   <Image
                     src={
@@ -64,7 +65,7 @@ export default function AboutUsPage() {
                   <h3 className="font-heading text-xl font-black uppercase tracking-tight text-black md:text-2xl">
                     {section.title}
                   </h3>
-                  <p className="font-body mt-4 text-base leading-relaxed text-zinc-800">
+                  <p className="font-body mt-4 max-w-prose text-base leading-relaxed text-zinc-800">
                     {section.body}
                   </p>
                   {"cta" in section && section.cta ? (
@@ -73,7 +74,8 @@ export default function AboutUsPage() {
                     </Link>
                   ) : null}
                 </div>
-              </article>
+                </article>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -83,12 +85,12 @@ export default function AboutUsPage() {
 
       <PedagogySection />
 
-      <section className="bg-black py-14 text-center md:py-16">
-        <div className="mx-auto w-full max-w-3xl px-4 md:px-6">
+      <section className="section-y bg-black text-center">
+        <FadeIn className="mx-auto w-full max-w-3xl px-4 md:px-6">
           <h2 className="font-heading text-2xl font-black uppercase tracking-tight text-white md:text-3xl">
             Find Out More
           </h2>
-          <p className="font-body mt-4 text-base leading-relaxed text-zinc-300">
+          <p className="font-body mx-auto mt-4 max-w-prose text-base leading-relaxed text-zinc-300">
             Explore our programmes across Secondary, IP, and JC — or book a free trial at our
             Bukit Timah classrooms.
           </p>
@@ -103,10 +105,12 @@ export default function AboutUsPage() {
               Free Trial
             </Link>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
-      <EnquirySection />
+      <FadeIn>
+        <EnquirySection />
+      </FadeIn>
     </div>
   );
 }

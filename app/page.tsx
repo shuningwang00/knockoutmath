@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import EnquirySection from "@/components/enquiry-section";
+import FadeIn from "@/components/fade-in";
 import GetToKnowSection from "@/components/get-to-know-section";
 import HashLink from "@/components/hash-link";
 import ProgrammeCards from "@/components/programme-cards";
@@ -28,12 +29,12 @@ export default function HomePage() {
   return (
     <div>
       <section className="bg-gradient-to-b from-zinc-50 to-white">
-        <div className="mx-auto w-full max-w-4xl px-4 py-16 text-center md:px-6 md:py-24">
-          <p className="text-2xl font-bold leading-snug text-zinc-800 md:text-3xl md:leading-snug">
+        <FadeIn className="mx-auto w-full max-w-4xl px-4 py-20 text-center md:px-6 md:py-28">
+          <p className="mx-auto max-w-prose text-2xl font-bold leading-snug text-zinc-800 md:text-3xl md:leading-snug">
             Top-tier math tuition in Bukit Timah, backed by 20+ years of MOE experience. We make
             numbers less scary and exams more manageable.
           </p>
-          <p className="mt-6 text-2xl font-bold leading-snug text-orange-500 md:text-3xl md:leading-snug">
+          <p className="mx-auto mt-6 max-w-prose text-2xl font-bold leading-snug text-orange-500 md:text-3xl md:leading-snug">
             Because math shouldn&apos;t feel like a horror movie.
           </p>
 
@@ -44,16 +45,16 @@ export default function HomePage() {
               </HashLink>
             ))}
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       <section className="bg-gradient-to-b from-white to-zinc-50 pb-12 pt-2">
-        <div className="mx-auto w-full max-w-4xl px-4 md:px-6">
+        <FadeIn className="mx-auto w-full max-w-4xl px-4 md:px-6">
           <YouTubeEmbed
             videoId="7_idzBKfRdo"
             title="Knockout Math — tuition in Bukit Timah"
           />
-        </div>
+        </FadeIn>
       </section>
 
       <SuccessStories />
@@ -62,7 +63,9 @@ export default function HomePage() {
 
       <GetToKnowSection />
 
-      <EnquirySection />
+      <FadeIn>
+        <EnquirySection />
+      </FadeIn>
     </div>
   );
 }

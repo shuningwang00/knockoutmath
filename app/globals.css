@@ -47,6 +47,47 @@ a {
   text-decoration: none;
 }
 
+@utility section-y {
+  padding-block: 5rem;
+
+  @media (width >= 48rem) {
+    padding-block: 7rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in-on-scroll {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    transition:
+      opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .fade-in-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card-lift {
+    transition:
+      transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .card-lift:hover {
+    transform: translateY(-0.35rem);
+    box-shadow: 0 16px 40px -12px rgb(0 0 0 / 0.14);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .programme-cta {
   background: linear-gradient(
     90deg,

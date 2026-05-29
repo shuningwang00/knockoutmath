@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ContactFaq from "@/components/contact-faq";
 import EnquiryForm from "@/components/enquiry-form";
+import FadeIn from "@/components/fade-in";
 import HashLink from "@/components/hash-link";
 import {
   CONTACT_EMAIL,
@@ -38,7 +39,7 @@ export default function ContactUsPage() {
           <h1 className="font-heading mt-2 text-3xl font-black uppercase tracking-tight text-black md:text-5xl">
             Contact Us
           </h1>
-          <p className="font-body mx-auto mt-4 max-w-3xl text-base leading-relaxed text-zinc-700 md:text-lg">
+          <p className="font-body mx-auto mt-4 max-w-prose text-base leading-relaxed text-zinc-700 md:text-lg">
             Have a question about our programmes, enrolment, or how Knockout Math works?
           </p>
           <div className="mt-5 flex flex-wrap justify-center gap-3">
@@ -51,10 +52,11 @@ export default function ContactUsPage() {
         </div>
       </section>
 
-      <section className="bg-[#f6f4ef] py-14 md:py-20">
+      <section className="section-y bg-[#f6f4ef]">
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 md:grid-cols-2 md:gap-12 md:px-6">
-          <div id="whatsapp" className="scroll-mt-28 space-y-6">
-            <p className="font-body text-base leading-relaxed text-zinc-700">
+          <FadeIn>
+            <div id="whatsapp" className="scroll-mt-28 space-y-6">
+              <p className="font-body max-w-prose text-base leading-relaxed text-zinc-700">
               The fastest way to reach us — ask about class slots, trials, or promotions.
             </p>
 
@@ -68,7 +70,7 @@ export default function ContactUsPage() {
               Chat on WhatsApp
             </a>
 
-            <div className="space-y-4 rounded-2xl border border-zinc-200 bg-white p-6">
+            <div className="card-lift space-y-4 rounded-2xl border border-zinc-200 bg-white p-6">
               <ContactRow label="Phone">
                 <a href={CONTACT_PHONE_HREF} className="transition hover:text-orange-600">
                   {CONTACT_PHONE}
@@ -90,9 +92,11 @@ export default function ContactUsPage() {
               </ContactRow>
             </div>
           </div>
+          </FadeIn>
 
-          <div id="enquiry" className="scroll-mt-28">
-            <div className="rounded-2xl bg-[#3d4555] p-6 md:p-8 lg:p-10">
+          <FadeIn delay={100}>
+            <div id="enquiry" className="scroll-mt-28">
+              <div className="card-lift rounded-2xl bg-[#3d4555] p-6 md:p-8 lg:p-10">
               <h2 className="font-heading text-2xl font-black uppercase tracking-tight text-white md:text-3xl">
                 Enquiry Form
               </h2>
@@ -103,21 +107,24 @@ export default function ContactUsPage() {
               <div className="mt-6">
                 <EnquiryForm />
               </div>
+              </div>
             </div>
-          </div>
+          </FadeIn>
         </div>
       </section>
 
-      <section id="directions" className="scroll-mt-28 bg-white py-14 md:py-20">
+      <section id="directions" className="section-y scroll-mt-28 bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
-          <header className="max-w-2xl">
-            <h2 className="font-heading text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
-              Getting Here
-            </h2>
-            <p className="font-body mt-4 text-base leading-relaxed text-zinc-700">
-              We are located at {mainBranch.name} #03-38
-            </p>
-          </header>
+          <FadeIn>
+            <header className="max-w-2xl">
+              <h2 className="font-heading text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
+                Getting Here
+              </h2>
+              <p className="font-body mt-4 max-w-prose text-base leading-relaxed text-zinc-700">
+                We are located at {mainBranch.name} #03-38
+              </p>
+            </header>
+          </FadeIn>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-start">
             <div className="space-y-6">
@@ -160,20 +167,22 @@ export default function ContactUsPage() {
         </div>
       </section>
 
-      <section id="faq" className="scroll-mt-28 bg-[#f6f4ef] py-14 md:py-20">
+      <section id="faq" className="section-y scroll-mt-28 bg-[#f6f4ef]">
         <div className="mx-auto w-full max-w-3xl px-4 md:px-6">
-          <header className="text-center">
-            <h2 className="font-heading text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
-              Frequently Asked Questions
-            </h2>
-            <p className="font-body mt-4 text-base leading-relaxed text-zinc-700">
-              Everything you need to know before joining Knockout Math.
-            </p>
-          </header>
+          <FadeIn>
+            <header className="text-center">
+              <h2 className="font-heading text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
+                Frequently Asked Questions
+              </h2>
+              <p className="font-body mx-auto mt-4 max-w-prose text-base leading-relaxed text-zinc-700">
+                Everything you need to know before joining Knockout Math.
+              </p>
+            </header>
+          </FadeIn>
 
-          <div className="mt-10">
+          <FadeIn delay={100} className="mt-10">
             <ContactFaq />
-          </div>
+          </FadeIn>
 
           <p className="font-body mt-8 text-center text-sm text-zinc-600">
             Still have questions?{" "}

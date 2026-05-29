@@ -26,7 +26,7 @@ export default function TutorTimeline({ entries }: { entries: TimelineEntry[] })
               </div>
 
               <article
-                className={`flex-1 rounded-2xl border px-5 py-5 shadow-sm md:px-6 md:py-6 ${
+                className={`card-lift flex-1 rounded-2xl border px-5 py-5 shadow-sm md:px-6 md:py-6 ${
                   isLatest
                     ? "border-orange-500 bg-gradient-to-br from-orange-50 to-white"
                     : "border-zinc-200 bg-white"

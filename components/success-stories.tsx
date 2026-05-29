@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { studentTestimonials, type Testimonial } from "@/lib/testimonials";
+import FadeIn from "@/components/fade-in";
+import { marqueeTestimonials, type Testimonial } from "@/lib/testimonials";
 
 function TestimonialBanner({ item }: { item: Testimonial }) {
   return (
-    <article className="mx-3 flex w-[min(100%,340px)] shrink-0 flex-col rounded-2xl border border-zinc-200 bg-white px-6 py-5 shadow-sm md:w-[380px]">
+    <article className="card-lift mx-3 flex w-[min(100%,340px)] shrink-0 flex-col rounded-2xl border border-zinc-200 bg-white px-6 py-5 shadow-sm md:w-[380px]">
       <p className="text-lg font-bold leading-snug text-orange-500">&ldquo;</p>
-      <p className="-mt-2 flex-1 text-sm leading-relaxed text-zinc-800 md:text-base">
+      <p className="-mt-2 line-clamp-5 flex-1 text-sm leading-relaxed text-zinc-800 md:text-base">
         {item.quote}
       </p>
       <div className="mt-4 border-t border-zinc-100 pt-4">
@@ -41,24 +42,27 @@ export default function SuccessStories() {
   return (
     <section
       id="our-story"
-      className="scroll-mt-24 border-y border-zinc-200 bg-[#f6f4ef] py-12 md:py-16"
+      className="section-y scroll-mt-24 border-y border-zinc-200 bg-[#f6f4ef]"
     >
       <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
-        <header className="text-center">
-          <h2 className="text-3xl font-black uppercase tracking-tight text-black md:text-4xl">
-            Students&apos; Success Stories
-          </h2>
-          <p className="font-heading mx-auto mt-4 max-w-3xl text-sm font-bold uppercase leading-relaxed tracking-[0.06em] text-orange-500 md:text-base">
-            100% Proven Success Rate and Improvement Rate
-          </p>
-        </header>
+        <FadeIn>
+          <header className="text-center">
+            <h2 className="text-3xl font-black uppercase tracking-tight text-black md:text-4xl">
+              Students&apos; Success Stories
+            </h2>
+            <p className="font-heading mx-auto mt-4 max-w-3xl text-sm font-bold uppercase leading-relaxed tracking-[0.06em] text-orange-500 md:text-base">
+              100% Proven Success Rate and Improvement Rate
+            </p>
+          </header>
+        </FadeIn>
       </div>
 
-      <div className="mt-10">
-        <TestimonialMarqueeRow items={studentTestimonials} />
-      </div>
+      <FadeIn className="mt-10">
+        <TestimonialMarqueeRow items={marqueeTestimonials} />
+      </FadeIn>
 
-      <p className="mt-8 text-center">
+      <FadeIn>
+        <p className="mt-8 text-center">
         <Link
           href="/testimonials/"
           className="text-sm font-bold uppercase tracking-[0.1em] text-orange-600 hover:text-orange-700"
@@ -66,6 +70,7 @@ export default function SuccessStories() {
           Read more testimonials →
         </Link>
       </p>
+      </FadeIn>
     </section>
   );
 }

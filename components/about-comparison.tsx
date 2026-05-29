@@ -1,4 +1,5 @@
 import { comparisonRows } from "@/lib/about";
+import FadeIn from "@/components/fade-in";
 
 function CheckIcon() {
   return (
@@ -39,18 +40,21 @@ function PointList({
 
 export default function AboutComparison() {
   return (
-    <section className="bg-[#f6f4ef] py-14 md:py-20">
+    <section className="section-y bg-[#f6f4ef]">
       <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
-        <header className="mx-auto max-w-3xl text-center">
-          <h2 className="font-heading text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
-            Why We&apos;re Different — And Better
-          </h2>
-          <p className="font-body mt-4 text-base leading-relaxed text-zinc-700">
-            See how Knockout Math compares to traditional math tuition in Singapore.
-          </p>
-        </header>
+        <FadeIn>
+          <header className="mx-auto max-w-3xl text-center">
+            <h2 className="font-heading text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
+              Why We&apos;re Different — And Better
+            </h2>
+            <p className="font-body mx-auto mt-4 max-w-prose text-base leading-relaxed text-zinc-700">
+              See how Knockout Math compares to traditional math tuition in Singapore.
+            </p>
+          </header>
+        </FadeIn>
 
-        <div className="mt-10 overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
+        <FadeIn delay={100}>
+          <div className="card-lift mt-10 overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
           <div className="hidden border-b border-zinc-200 md:grid md:grid-cols-2">
             <div className="border-r border-zinc-200 bg-orange-500 px-6 py-5 text-center">
               <p className="font-heading text-sm font-bold uppercase tracking-[0.12em] text-white md:text-base">
@@ -94,7 +98,8 @@ export default function AboutComparison() {
               </article>
             ))}
           </div>
-        </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

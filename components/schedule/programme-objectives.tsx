@@ -1,25 +1,26 @@
+import FadeIn from "@/components/fade-in";
 import { programmeObjectives } from "@/lib/schedule";
 
 export default function ProgrammeObjectives() {
   return (
-    <section className="border-t border-zinc-200 bg-white py-14 md:py-20">
+    <section className="section-y border-t border-zinc-200 bg-white">
       <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
-        <header className="mx-auto max-w-3xl text-center">
-          <h2 className="font-heading text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
-            What Each Programme Covers
-          </h2>
-          <p className="font-body mt-4 text-base leading-relaxed text-zinc-700">
-            Every class slot above is part of a structured pathway designed to build confidence,
-            mastery, and exam readiness.
-          </p>
-        </header>
+        <FadeIn>
+          <header className="mx-auto max-w-3xl text-center">
+            <h2 className="font-heading text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
+              What Each Programme Covers
+            </h2>
+            <p className="font-body mx-auto mt-4 max-w-prose text-base leading-relaxed text-zinc-700">
+              Every class slot above is part of a structured pathway designed to build confidence,
+              mastery, and exam readiness.
+            </p>
+          </header>
+        </FadeIn>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {programmeObjectives.map((programme) => (
-            <article
-              key={programme.id}
-              className="rounded-2xl border border-zinc-200 bg-[#f6f4ef] p-6 md:p-8"
-            >
+          {programmeObjectives.map((programme, index) => (
+            <FadeIn key={programme.id} delay={index * 60}>
+              <article className="card-lift h-full rounded-2xl border border-zinc-200 bg-[#f6f4ef] p-6 md:p-8">
               <h3 className="font-heading text-lg font-black uppercase leading-snug tracking-tight text-black md:text-xl">
                 {programme.title}
               </h3>
@@ -49,7 +50,8 @@ export default function ProgrammeObjectives() {
                   </ul>
                 </>
               ) : null}
-            </article>
+              </article>
+            </FadeIn>
           ))}
         </div>
       </div>
