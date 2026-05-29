@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import type { ProgrammePageContent } from "@/lib/programme-pages/types";
+import { absoluteOgAssetUrl } from "@/lib/og-image-origin";
 import { SITE_URL } from "@/lib/site";
 
-export const DEFAULT_OG_IMAGE = "/opengraph-image";
+export const DEFAULT_OG_IMAGE = "/og/share.png";
 export const DEFAULT_OG_IMAGE_ALT =
   "Knockout Math — math tuition for Secondary, IP, and JC students in Bukit Timah";
 
@@ -36,6 +37,7 @@ export function createPageMetadata({
 }: PageMetadataInput): Metadata {
   const canonical = absoluteUrl(path);
   const ogTitle = fullTitle(title);
+  const ogImageUrl = absoluteOgAssetUrl(image);
 
   return {
     title,
@@ -50,25 +52,27 @@ export function createPageMetadata({
       description,
       images: [
         image === DEFAULT_OG_IMAGE
-          ? { url: image, width: 1200, height: 630, alt: imageAlt }
-          : { url: image, alt: imageAlt },
+          ? { url: ogImageUrl, width: 1200, height: 630, alt: imageAlt }
+          : { url: ogImageUrl, alt: imageAlt },
       ],
     },
     twitter: {
       card: "summary_large_image",
       title: ogTitle,
       description,
-      images: [image],
+      images: [ogImageUrl],
     },
   };
 }
 
 export function programmePageMetadata(programme: ProgrammePageContent): Metadata {
+  const imagePath = programmeHeroImage(programme.hero.image);
+
   return createPageMetadata({
     title: programme.metadata.title,
     description: programme.metadata.description,
     path: programme.slug,
-    image: programmeHeroImage(programme.hero.image),
+    image: imagePath,
     imageAlt: programme.hero.imageAlt,
   });
 }
@@ -78,10 +82,17 @@ export const siteOpenGraphDefaults: Metadata = {
     type: "website",
     locale: "en_SG",
     siteName: "Knockout Math",
-    images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: DEFAULT_OG_IMAGE_ALT }],
+    images: [
+      {
+        url: absoluteOgAssetUrl(DEFAULT_OG_IMAGE),
+        width: 1200,
+        height: 630,
+        alt: DEFAULT_OG_IMAGE_ALT,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: DEFAULT_OG_IMAGE_ALT }],
+    images: [absoluteOgAssetUrl(DEFAULT_OG_IMAGE)],
   },
 };
