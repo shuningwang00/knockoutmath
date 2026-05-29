@@ -37,8 +37,6 @@ export const openingHours = [
 ] as const;
 
 export const contactNavLinks = [
-  { label: "WhatsApp", href: "#whatsapp" },
-  { label: "Enquiry Form", href: "#enquiry" },
   { label: "Getting Here", href: "#directions" },
   { label: "FAQ", href: "#faq" },
 ] as const;

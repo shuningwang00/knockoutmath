@@ -18,7 +18,7 @@ export default function Footer() {
         <div>
           <Logo variant="full-light" className="h-11 w-auto object-contain" />
           <p className="mt-3 text-sm font-semibold text-zinc-300">
-            Multiply Confidence. Subtract Fear.
+            Helmed by ex-MOE Tutors
           </p>
 
           <a

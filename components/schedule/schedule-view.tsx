@@ -50,7 +50,7 @@ export default function ScheduleView() {
 
         <div className="mt-6">
           {viewMode === "grid" ? (
-            <ScheduleGrid slots={filteredSlots} onSelect={setSelectedSlot} />
+            <ScheduleGrid slots={filteredSlots} weekendsOnly={weekendsOnly} onSelect={setSelectedSlot} />
           ) : (
             <ScheduleList slots={filteredSlots} onSelect={setSelectedSlot} />
           )}

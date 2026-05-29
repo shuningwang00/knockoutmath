@@ -512,7 +512,7 @@ export const programmeObjectives: ProgrammeObjective[] = [
   },
   {
     id: "sec3-prep",
-    title: "Sec 3 G3 E & A Math O Level Prep Programme",
+    title: "Sec 3 G3 E & A Math O-Level Prep Programme",
     objectives: [
       "Topical Mastery: Targeted practice to sharpen accuracy and build speed and proficiency.",
       "Analytical Thinking: Develop techniques to break down higher-order questions.",
@@ -521,7 +521,7 @@ export const programmeObjectives: ProgrammeObjective[] = [
   },
   {
     id: "sec4-prep",
-    title: "Sec 4 G3 E & A Math O Level Prep Programme",
+    title: "Sec 4 G3 E & A Math O-Level Prep Programme",
     objectives: [
       "Exam-Focused Curriculum: Intensive revision and full mock paper training. Refine accuracy under timed O-Level conditions.",
       "Advanced Techniques: Master answering strategies for high-weightage questions.",
@@ -531,7 +531,7 @@ export const programmeObjectives: ProgrammeObjective[] = [
   },
   {
     id: "jc-h2",
-    title: "JC 1 & 2 H2 Math A Level Prep Programme",
+    title: "JC 1 & 2 H2 Math A-Level Prep Programme",
     objectives: [
       "Strong Foundation: Build deep conceptual understanding to confidently handle the rigour of H2 Math.",
       "Smart Learning: Connect concepts to real-world contexts for clearer, more intuitive understanding.",

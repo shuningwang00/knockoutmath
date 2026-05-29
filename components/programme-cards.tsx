@@ -11,7 +11,7 @@ export default function ProgrammeCards() {
             Our Programmes
           </h2>
           <p className="font-heading mx-auto mt-4 max-w-3xl text-sm font-bold uppercase leading-relaxed tracking-[0.08em] text-orange-500 md:text-base">
-            Specialist math tutors in secondary O level math &amp; junior college H2 math
+            Specialist math tutors in secondary O-Level math &amp; junior college H2 math
           </p>
         </header>
 

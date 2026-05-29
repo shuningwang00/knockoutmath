@@ -8,18 +8,33 @@ const ctaPrimary =
 const ctaOrange =
   "font-heading inline-flex rounded-full border-2 border-orange-500 bg-orange-500 px-8 py-3.5 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-orange-600";
 
+function programmeHeroImage(cardImage: string) {
+  return cardImage.replace("/programmes/", "/programmes/heroes/");
+}
+
 export function ProgrammeHero({ hero }: { hero: ProgrammePageContent["hero"] }) {
   return (
-    <section className="border-b border-zinc-200 bg-gradient-to-b from-zinc-50 to-white">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 md:grid-cols-2 md:items-center md:px-6 md:py-20">
-        <div>
-          <p className="font-heading text-sm font-bold uppercase tracking-[0.2em] text-orange-500">
+    <section className="relative min-h-[22rem] overflow-hidden border-b border-zinc-200 md:min-h-[26rem]">
+      <Image
+        src={programmeHeroImage(hero.image)}
+        alt={hero.imageAlt}
+        fill
+        className="object-cover object-center"
+        sizes="100vw"
+        quality={90}
+        priority
+      />
+      <div className="absolute inset-0 bg-black/55" aria-hidden />
+
+      <div className="relative mx-auto flex w-full max-w-6xl items-center px-4 py-14 md:px-6 md:py-20">
+        <div className="max-w-2xl">
+          <p className="font-heading text-sm font-bold uppercase tracking-[0.2em] text-orange-400">
             {hero.eyebrow}
           </p>
-          <h1 className="font-heading mt-3 text-3xl font-black uppercase leading-tight tracking-tight text-black md:text-5xl">
+          <h1 className="font-heading mt-3 text-3xl font-black uppercase leading-tight tracking-tight text-white md:text-5xl">
             {hero.title}
           </h1>
-          <p className="font-heading mt-3 text-lg font-bold uppercase tracking-[0.1em] text-zinc-600 md:text-xl">
+          <p className="font-heading mt-3 text-lg font-bold uppercase tracking-[0.1em] text-white/85 md:text-xl">
             {hero.subtitle}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -31,17 +46,6 @@ export function ProgrammeHero({ hero }: { hero: ProgrammePageContent["hero"] }) 
             </Link>
           </div>
         </div>
-
-        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-zinc-200 shadow-sm">
-          <Image
-            src={hero.image}
-            alt={hero.imageAlt}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-            priority
-          />
-        </div>
       </div>
     </section>
   );
@@ -51,6 +55,57 @@ function syllabusSectionId(level: string) {
   if (level.includes("Secondary 1")) return "secondary-1-scheme-of-work";
   if (level.includes("Secondary 2")) return "secondary-2-scheme-of-work";
   return level.toLowerCase().replace(/\s+/g, "-");
+}
+
+const TERM_HEADER_COLORS = [
+  "bg-[#f4c98a]",
+  "bg-[#b8d4f0]",
+  "bg-[#b8dfc4]",
+  "bg-[#f0b8c8]",
+] as const;
+
+function SyllabusChapterLine({ chapter }: { chapter: string }) {
+  const match = chapter.match(/^(Chapter \d+:)(.*)$/);
+
+  if (match) {
+    return (
+      <>
+        <span className="font-bold">{match[1]}</span>
+        {match[2]}
+      </>
+    );
+  }
+
+  return <>{chapter}</>;
+}
+
+function SyllabusTermTable({ terms }: { terms: ProgrammePageContent["syllabi"][number]["terms"] }) {
+  return (
+    <div className="w-full overflow-hidden border border-black">
+      {terms.map((term, index) => (
+        <div key={`${term.name}-${term.dates}`} className="border-b border-black last:border-b-0">
+          <div
+            className={`${TERM_HEADER_COLORS[index % TERM_HEADER_COLORS.length]} border-b border-black px-2.5 py-2 text-center`}
+          >
+            <p className="font-heading text-sm font-bold text-black">{term.name}</p>
+            <p className="font-body text-xs text-black/80">{term.dates}</p>
+          </div>
+
+          <div className="min-h-[1.25rem] bg-[#f6f4ef] px-2.5 py-2">
+            {term.chapters.length > 0 ? (
+              <ul className="space-y-0.5">
+                {term.chapters.map((chapter) => (
+                  <li key={chapter} className="font-body text-xs leading-snug text-black md:text-sm">
+                    <SyllabusChapterLine chapter={chapter} />
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export function ProgrammeHighlights({
@@ -109,7 +164,13 @@ export function ProgrammeHighlights({
   );
 }
 
-export function ProgrammeSyllabus({ syllabi }: { syllabi: ProgrammePageContent["syllabi"] }) {
+export function ProgrammeSyllabus({
+  syllabi,
+  fees,
+}: {
+  syllabi: ProgrammePageContent["syllabi"];
+  fees?: ProgrammePageContent["fees"];
+}) {
   return (
     <section className="border-y border-zinc-200 bg-[#f6f4ef] py-14 md:py-20">
       <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
@@ -117,50 +178,64 @@ export function ProgrammeSyllabus({ syllabi }: { syllabi: ProgrammePageContent["
           Scheme of Work
         </h2>
 
-        <div className="mt-10 space-y-12">
+        <div className="mt-10 space-y-14">
           {syllabi.map((syllabus) => (
-            <div key={syllabus.level} id={syllabusSectionId(syllabus.level)} className="scroll-mt-24">
-              <h3 className="font-heading text-xl font-black uppercase tracking-tight text-black md:text-2xl">
-                {syllabus.level}
-              </h3>
-              <p className="font-body mt-4 max-w-4xl text-base leading-relaxed text-zinc-800">
-                {syllabus.intro}
-              </p>
-
-              <div className="mt-8 grid gap-4 md:grid-cols-2">
-                {syllabus.terms.map((term) => (
-                  <article
-                    key={`${syllabus.level}-${term.name}`}
-                    className="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm"
-                  >
-                    <div className="border-b border-zinc-200 bg-black px-5 py-4">
-                      <p className="font-heading text-sm font-bold uppercase tracking-[0.12em] text-orange-500">
-                        {term.name}
-                      </p>
-                      <p className="font-body mt-1 text-sm text-zinc-300">{term.dates}</p>
-                    </div>
-
-                    {term.chapters.length > 0 ? (
-                      <ul className="space-y-2 px-5 py-4">
-                        {term.chapters.map((chapter) => (
-                          <li
-                            key={chapter}
-                            className="font-body text-sm leading-relaxed text-zinc-700 md:text-base"
-                          >
-                            {chapter}
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="font-body px-5 py-4 text-sm italic text-zinc-500">
-                        Learn-ahead and revision block — see Term 1 for full chapter coverage.
-                      </p>
-                    )}
-                  </article>
-                ))}
+            <div
+              key={syllabus.level}
+              id={syllabusSectionId(syllabus.level)}
+              className="scroll-mt-24 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:items-start lg:gap-10"
+            >
+              <div>
+                <h3 className="font-heading text-xl font-black uppercase tracking-tight text-black md:text-2xl">
+                  {syllabus.level}
+                </h3>
+                <p className="font-body mt-3 text-sm leading-relaxed text-zinc-800 md:text-base">
+                  {syllabus.intro}
+                </p>
               </div>
+
+              <SyllabusTermTable terms={syllabus.terms} />
             </div>
           ))}
+
+          {fees ? (
+            <div
+              id="fees"
+              className="scroll-mt-24 grid gap-6 border-t border-zinc-300/80 pt-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:items-start lg:gap-10"
+            >
+              <div>
+                <h3 className="font-heading text-xl font-black uppercase tracking-tight text-black md:text-2xl">
+                  Fees
+                </h3>
+                <p className="font-body mt-3 text-sm leading-relaxed text-zinc-800 md:text-base">
+                  Straightforward pricing for our Secondary 1 and 2 G3 classes — materials
+                  included, with pro-rated options if you join mid-term.
+                </p>
+              </div>
+
+              <div className="w-full border border-black bg-white">
+                <div className="border-b border-black bg-[#f4c98a] px-4 py-3 text-center">
+                  <p className="font-heading text-2xl font-black text-black md:text-3xl">
+                    {fees.amount}
+                  </p>
+                  <p className="font-heading mt-0.5 text-xs font-bold uppercase tracking-[0.12em] text-black/80">
+                    {fees.unit}
+                  </p>
+                </div>
+                <ul className="space-y-2 bg-[#f6f4ef] px-4 py-4">
+                  {fees.notes.map((note) => (
+                    <li
+                      key={note}
+                      className="flex gap-2 font-body text-xs leading-snug text-black md:text-sm"
+                    >
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-orange-500" aria-hidden />
+                      <span>{note}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </section>
@@ -177,19 +252,14 @@ export function ProgrammeBottomCta({
   return (
     <>
       <section className="bg-white py-14 md:py-16">
-        <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 md:grid-cols-2 md:px-6">
-          <article className="rounded-2xl border border-orange-500 bg-orange-50/40 p-8">
-            <h2 className="font-heading text-xl font-black uppercase tracking-tight text-black md:text-2xl">
-              {referral.title}
-            </h2>
-            <p className="font-body mt-4 text-base leading-relaxed text-zinc-800">{referral.body}</p>
-          </article>
+        <div className="mx-auto w-full max-w-6xl space-y-8 px-4 md:px-6">
+          <ReferralCallout referral={referral} />
 
-          <article className="rounded-2xl border border-zinc-200 bg-[#f6f4ef] p-8">
+          <article className="rounded-2xl border border-zinc-200 bg-[#f6f4ef] p-8 md:p-10">
             <h2 className="font-heading text-xl font-black uppercase tracking-tight text-black md:text-2xl">
               {successStories.title}
             </h2>
-            <p className="font-body mt-4 text-base leading-relaxed text-zinc-800">
+            <p className="font-body mt-4 max-w-3xl text-base leading-relaxed text-zinc-800">
               {successStories.body}
             </p>
             <Link href={successStories.href} className={`${ctaPrimary} mt-6`}>
@@ -205,8 +275,8 @@ export function ProgrammeBottomCta({
             Ready to enroll?
           </h2>
           <p className="font-body mt-4 text-base leading-relaxed text-zinc-300">
-            Secure a spot in our Lower Secondary G3 classes or book a free trial at our Bukit
-            Timah centre.
+            Classes are $280 per 4 lessons. Secure a spot in our Lower Secondary G3 classes or
+            book a free trial at our Bukit Timah centre.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link href="/schedule/" className={ctaOrange}>
@@ -219,5 +289,64 @@ export function ProgrammeBottomCta({
         </div>
       </section>
     </>
+  );
+}
+
+function ReferralCallout({ referral }: { referral: ProgrammePageContent["referral"] }) {
+  const bodyParts = referral.body.split("$200 cash");
+
+  return (
+    <article className="relative overflow-hidden rounded-2xl border border-orange-200 bg-[#f6f4ef] p-8 md:p-10">
+      <div
+        className="pointer-events-none absolute -right-6 -top-6 h-28 w-28 rounded-full bg-orange-400/15"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute bottom-4 right-8 text-3xl text-orange-400/40"
+        aria-hidden
+      >
+        ✦
+      </div>
+
+      <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
+        <GiftBoxIcon className="h-20 w-20 shrink-0 sm:h-24 sm:w-24" />
+        <h2 className="font-heading text-3xl font-black uppercase leading-[0.95] tracking-tight text-orange-500 md:text-4xl lg:text-5xl">
+          Referral
+          <br />
+          Programme
+        </h2>
+      </div>
+
+      <p className="font-body relative mt-6 max-w-4xl text-base leading-relaxed text-zinc-700 md:text-lg">
+        {bodyParts.length === 2 ? (
+          <>
+            {bodyParts[0]}
+            <span className="font-bold text-orange-600">$200 cash</span>
+            {bodyParts[1]}
+          </>
+        ) : (
+          referral.body
+        )}
+      </p>
+    </article>
+  );
+}
+
+function GiftBoxIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 96 96" fill="none" aria-hidden>
+      <rect x="14" y="44" width="68" height="44" rx="3" stroke="#111" strokeWidth="3.5" fill="#fff" />
+      <path d="M14 44h68" stroke="#111" strokeWidth="3.5" />
+      <rect x="14" y="28" width="68" height="16" rx="2" stroke="#111" strokeWidth="3.5" fill="#ef4444" />
+      <path d="M14 36h68" stroke="#fff" strokeWidth="2.5" opacity="0.85" />
+      <path d="M48 28v60" stroke="#111" strokeWidth="3.5" />
+      <path
+        d="M48 28c-10-10-22-8-22 0s12 8 22 0 22-8 22 0-12 8-22 0Z"
+        stroke="#111"
+        strokeWidth="3.5"
+        fill="#111"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }

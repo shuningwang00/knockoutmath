@@ -33,7 +33,7 @@ export default function HomePage() {
             Top-tier math tuition in Bukit Timah, backed by 20+ years of MOE experience. We make
             numbers less scary and exams more manageable.
           </p>
-          <p className="font-body mt-6 text-xl font-black text-orange-500 md:text-2xl">
+          <p className="mt-6 text-2xl font-bold leading-snug text-orange-500 md:text-3xl md:leading-snug">
             Because math shouldn&apos;t feel like a horror movie.
           </p>
 

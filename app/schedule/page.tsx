@@ -19,19 +19,19 @@ export default function SchedulePage() {
   return (
     <div>
       <section className="border-b border-zinc-200 bg-gradient-to-b from-zinc-50 to-white">
-        <div className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6 md:py-20">
+        <div className="mx-auto w-full max-w-6xl px-4 py-8 md:px-6 md:py-10">
           <p className="font-heading text-sm font-bold uppercase tracking-[0.2em] text-orange-500">
             Timetable
           </p>
-          <h1 className="font-heading mt-3 text-3xl font-black uppercase leading-tight tracking-tight text-black md:text-5xl">
+          <h1 className="font-heading mt-2 text-3xl font-black uppercase leading-tight tracking-tight text-black md:text-5xl">
             2026 Class Schedule
           </h1>
-          <p className="font-body mt-5 max-w-2xl text-base leading-relaxed text-zinc-700 md:text-lg">
+          <p className="font-body mt-4 max-w-2xl text-base leading-relaxed text-zinc-700 md:text-lg">
             Browse our weekly timetable for Primary, Secondary, and JC classes at Knockout Math
             Bukit Timah. Tap any slot to see details or enquire about availability.
           </p>
 
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               href={SCHEDULE_LOCATION.mapsHref}
               target="_blank"
@@ -60,7 +60,7 @@ export default function SchedulePage() {
         </div>
       </section>
 
-      <section className="bg-white py-10 md:py-14">
+      <section className="bg-white py-6 md:py-8">
         <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
           <ScheduleView />
         </div>

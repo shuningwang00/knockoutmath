@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     default: "Knockout Math",
     template: "%s | Knockout Math",
   },
-  description: "Multiply Confidence. Subtract Fear.",
+  description: "Helmed by ex-MOE Tutors",
   icons: {
     icon: "/logo-icon-dark.png",
     apple: "/logo-icon-dark.png",

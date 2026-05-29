@@ -26,7 +26,7 @@ export default function LowerSecondaryMathPage() {
       <ProgrammeHero hero={programme.hero} />
       <ProgrammeFoundationNav foundation={programme.foundation} />
       <ProgrammeHighlights highlights={programme.highlights} />
-      <ProgrammeSyllabus syllabi={programme.syllabi} />
+      <ProgrammeSyllabus syllabi={programme.syllabi} fees={programme.fees} />
       <ProgrammeBottomCta referral={programme.referral} successStories={programme.successStories} />
       <EnquirySection />
     </div>

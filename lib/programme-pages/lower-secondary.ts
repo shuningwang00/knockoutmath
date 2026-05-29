@@ -24,6 +24,7 @@ export const lowerSecondaryProgramme: ProgrammePageContent = {
       { label: "Programme Features", href: "#programme-features", icon: "star" },
       { label: "Secondary 1 Scheme of Work", href: "#secondary-1-scheme-of-work", icon: "bookmark" },
       { label: "Secondary 2 Scheme of Work", href: "#secondary-2-scheme-of-work", icon: "bookmark" },
+      { label: "Fees", href: "#fees", icon: "star" },
       { label: "Enroll Now", href: "#enroll", icon: "star" },
     ],
   },
@@ -156,9 +157,18 @@ export const lowerSecondaryProgramme: ProgrammePageContent = {
       ],
     },
   ],
+  fees: {
+    amount: "$280",
+    unit: "per 4 lessons",
+    notes: [
+      "Pro-rated for mid-term enrolments",
+      "Registration fee: $40 (one-time)",
+      "Material fees included",
+    ],
+  },
   referral: {
     title: "Referral Programme",
-    body: "Know someone who could use a math confidence boost? Refer a friend to Knockout Math — when they sign up for our classes, you get $200 cash, and they get the support they need to improve and thrive. No referral limit.",
+    body: "Know someone who could use a math confidence boost? Refer a friend to Knockout Math — when they sign up for our Secondary E-Math tuition classes, you get $200 cash, and they get the support they need to improve and thrive. Everybody wins. No referral limit, so keep the good vibes (and rewards) coming!",
   },
   successStories: {
     title: "Hear From Our Students",

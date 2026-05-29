@@ -1,5 +1,5 @@
 const MARQUEE_TEXT =
-  "PRIMARY • SECONDARY • IP • JC • PSLE • O LEVEL • A LEVEL";
+  "PRIMARY • SECONDARY • IP • JC • PSLE • O-LEVEL • A-LEVEL";
 
 function MarqueeSegment() {
   return (
@@ -17,7 +17,7 @@ export default function TeachingMarquee() {
   return (
     <div
       className="overflow-hidden border-b border-orange-500/30 bg-black py-3 text-white"
-      aria-label="Programmes we teach: Primary, Secondary, IP, JC, PSLE, O Level, A Level"
+      aria-label="Programmes we teach: Primary, Secondary, IP, JC, PSLE, O-Level, A-Level"
     >
       <div className="marquee-track flex w-max text-sm font-bold uppercase tracking-[0.14em] md:text-base">
         <div className="marquee-group flex shrink-0">

@@ -6,6 +6,7 @@ import { DAY_LABELS, DAY_ORDER, TIME_BANDS, slotsForCell } from "@/lib/schedule"
 
 type ScheduleGridProps = {
   slots: ClassSlot[];
+  weekendsOnly: boolean;
   onSelect: (slot: ClassSlot) => void;
 };
 
@@ -13,9 +14,14 @@ function dayClassCount(slots: ClassSlot[], day: DayOfWeek) {
   return slots.filter((slot) => slot.day === day).length;
 }
 
-export default function ScheduleGrid({ slots, onSelect }: ScheduleGridProps) {
+const WEEKEND_DAYS: DayOfWeek[] = ["sat", "sun"];
+
+export default function ScheduleGrid({ slots, weekendsOnly, onSelect }: ScheduleGridProps) {
+  const visibleDays = weekendsOnly ? WEEKEND_DAYS : DAY_ORDER;
+  const gridTemplateColumns = `5.5rem repeat(${visibleDays.length}, minmax(0, 1fr))`;
+
   const visibleBands = TIME_BANDS.filter((band) =>
-    DAY_ORDER.some((day) => slotsForCell(slots, day, band).length > 0),
+    visibleDays.some((day) => slotsForCell(slots, day, band).length > 0),
   );
 
   if (slots.length === 0) {
@@ -31,10 +37,13 @@ export default function ScheduleGrid({ slots, onSelect }: ScheduleGridProps) {
 
   return (
     <div className="overflow-x-auto rounded-xl border border-zinc-200 bg-white">
-      <div className="min-w-[52rem]">
-        <div className="grid grid-cols-[5.5rem_repeat(7,minmax(0,1fr))] border-b border-zinc-200 bg-zinc-50">
+      <div className={weekendsOnly ? "min-w-[20rem]" : "min-w-[52rem]"}>
+        <div
+          className="grid border-b border-zinc-200 bg-zinc-50"
+          style={{ gridTemplateColumns }}
+        >
           <div className="border-r border-zinc-200 px-2 py-3" />
-          {DAY_ORDER.map((day) => (
+          {visibleDays.map((day) => (
             <div key={day} className="border-r border-zinc-200 px-2 py-3 text-center last:border-r-0">
               <p className="font-heading text-xs font-bold uppercase tracking-[0.12em] text-black md:text-sm">
                 {DAY_LABELS[day]}
@@ -47,7 +56,14 @@ export default function ScheduleGrid({ slots, onSelect }: ScheduleGridProps) {
         </div>
 
         {visibleBands.map((band) => (
-          <GridRow key={band.id} band={band} slots={slots} onSelect={onSelect} />
+          <GridRow
+            key={band.id}
+            band={band}
+            slots={slots}
+            visibleDays={visibleDays}
+            gridTemplateColumns={gridTemplateColumns}
+            onSelect={onSelect}
+          />
         ))}
       </div>
     </div>
@@ -57,21 +73,28 @@ export default function ScheduleGrid({ slots, onSelect }: ScheduleGridProps) {
 function GridRow({
   band,
   slots,
+  visibleDays,
+  gridTemplateColumns,
   onSelect,
 }: {
   band: TimeBand;
   slots: ClassSlot[];
+  visibleDays: DayOfWeek[];
+  gridTemplateColumns: string;
   onSelect: (slot: ClassSlot) => void;
 }) {
   return (
-    <div className="grid grid-cols-[5.5rem_repeat(7,minmax(0,1fr))] border-b border-zinc-100 last:border-b-0">
+    <div
+      className="grid border-b border-zinc-100 last:border-b-0"
+      style={{ gridTemplateColumns }}
+    >
       <div className="border-r border-zinc-200 bg-zinc-50/80 px-2 py-3">
         <p className="font-heading text-[0.6rem] font-bold uppercase leading-tight tracking-wide text-zinc-600 md:text-[0.65rem]">
           {band.label}
         </p>
       </div>
 
-      {DAY_ORDER.map((day) => {
+      {visibleDays.map((day) => {
         const cellSlots = slotsForCell(slots, day, band);
         return (
           <div

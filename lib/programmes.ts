@@ -16,7 +16,7 @@ export const homeProgrammes: ProgrammeCard[] = [
     imageAlt: "Student raising her hand in a Knockout Math classroom",
   },
   {
-    title: "Secondary O-level G3 (Express) E Math",
+    title: "Secondary O-Level G3 (Express) E Math",
     description:
       "Boost your results in Elementary Mathematics with our Secondary 3 E Math tuition. We focus on essential topics like geometry, statistics, and algebra through clear explanations and guided practice, preparing students for O-Level success.",
     href: "/secondary-e-math-tuition-o-level/",
@@ -24,7 +24,7 @@ export const homeProgrammes: ProgrammeCard[] = [
     imageAlt: "Students collaborating on math with whiteboards and sticky notes",
   },
   {
-    title: "Secondary O-level G3 (Express) A Math",
+    title: "Secondary O-Level G3 (Express) A Math",
     description:
       "Ace Additional Mathematics with our Secondary 3 A Math tuition. Our lessons simplify challenging concepts like algebra, trigonometry, and calculus to help students build confidence and achieve higher scores in school exams and O-Levels.",
     href: "/upper-secondary-a-math/",
@@ -40,7 +40,7 @@ export const homeProgrammes: ProgrammeCard[] = [
     imageAlt: "Tutor teaching trigonometry on the classroom whiteboard",
   },
   {
-    title: "Junior College A-level H2 Math",
+    title: "Junior College A-Level H2 Math",
     description:
       "Master H2 Math with our expert-led JC A-Level tuition programme. Our classes focus on in-depth understanding, proven exam strategies, and tackling complex problem-solving with confidence. Perfect for students aiming to secure distinctions in H2 Math.",
     href: "/junior-college-h2-math-tuition/",

@@ -3,7 +3,6 @@ import Link from "next/link";
 import ContactFaq from "@/components/contact-faq";
 import EnquiryForm from "@/components/enquiry-form";
 import HashLink from "@/components/hash-link";
-import PageHero from "@/components/page-hero";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
@@ -31,19 +30,24 @@ const navButtonClassName =
 export default function ContactUsPage() {
   return (
     <div>
-      <PageHero
-        eyebrow="Get in touch"
-        title="Contact Us"
-        subtitle="Have a question about our programmes, enrolment, or how Knockout Math works?"
-      />
-
-      <section className="border-b border-zinc-200 bg-white py-6 md:py-8">
-        <div className="mx-auto flex w-full max-w-6xl flex-wrap justify-center gap-3 px-4 md:px-6">
-          {contactNavLinks.map((item) => (
-            <HashLink key={item.href} href={item.href} className={navButtonClassName}>
-              {item.label}
-            </HashLink>
-          ))}
+      <section className="border-b border-zinc-200 bg-gradient-to-b from-zinc-50 to-white">
+        <div className="mx-auto w-full max-w-4xl px-4 py-8 text-center md:px-6 md:py-10">
+          <p className="font-heading text-sm font-bold uppercase tracking-[0.2em] text-orange-500">
+            Get in touch
+          </p>
+          <h1 className="font-heading mt-2 text-3xl font-black uppercase tracking-tight text-black md:text-5xl">
+            Contact Us
+          </h1>
+          <p className="font-body mx-auto mt-4 max-w-3xl text-base leading-relaxed text-zinc-700 md:text-lg">
+            Have a question about our programmes, enrolment, or how Knockout Math works?
+          </p>
+          <div className="mt-5 flex flex-wrap justify-center gap-3">
+            {contactNavLinks.map((item) => (
+              <HashLink key={item.href} href={item.href} className={navButtonClassName}>
+                {item.label}
+              </HashLink>
+            ))}
+          </div>
         </div>
       </section>
 

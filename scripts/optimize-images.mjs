@@ -1,16 +1,23 @@
 import sharp from "sharp";
-import { readdir, unlink } from "fs/promises";
+import { mkdir, readdir, unlink } from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 
-/** Max width tuned for largest on-screen size (2× retina). */
+/** Card thumbnails (~600px display); heroes (~full-bleed at 2× retina). */
 const jobs = [
   {
     dir: path.join(root, "public/programmes"),
     maxWidth: 1200,
     quality: 85,
+    match: /\.jpe?g$/i,
+  },
+  {
+    dir: path.join(root, "public/programmes"),
+    outDir: path.join(root, "public/programmes/heroes"),
+    maxWidth: 2400,
+    quality: 90,
     match: /\.jpe?g$/i,
   },
   {
@@ -21,9 +28,10 @@ const jobs = [
   },
 ];
 
-async function optimizeFile(inputPath, maxWidth, quality) {
+async function optimizeFile(inputPath, maxWidth, quality, outDir) {
   const parsed = path.parse(inputPath);
-  const outputPath = path.join(parsed.dir, `${parsed.name}.webp`);
+  const outputDir = outDir ?? parsed.dir;
+  const outputPath = path.join(outputDir, `${parsed.name}.webp`);
 
   const before = (await sharp(inputPath).metadata()).width;
   await sharp(inputPath)
@@ -55,6 +63,10 @@ function formatBytes(bytes) {
 }
 
 for (const job of jobs) {
+  if (job.outDir) {
+    await mkdir(job.outDir, { recursive: true });
+  }
+
   const files = job.files
     ? job.files.map((name) => path.join(job.dir, name))
     : (await readdir(job.dir))
@@ -62,7 +74,7 @@ for (const job of jobs) {
         .map((name) => path.join(job.dir, name));
 
   for (const file of files) {
-    await optimizeFile(file, job.maxWidth, job.quality);
+    await optimizeFile(file, job.maxWidth, job.quality, job.outDir);
   }
 }
 
