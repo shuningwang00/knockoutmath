@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import TeachingMarquee from "@/components/teaching-marquee";
+import WhatsAppButton from "@/components/whatsapp-button";
 import { SITE_URL } from "@/lib/site";
 
 const outfit = Outfit({
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="font-body flex-1">{children}</main>
           <Footer />
         </div>
+        <WhatsAppButton />
       </body>
     </html>
   );

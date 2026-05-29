@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export type LogoVariant = "full-light" | "icon-light" | "icon-dark";
+export type LogoVariant = "full-light" | "full-dark" | "icon-light" | "icon-dark";
 
 type LogoProps = {
   variant?: LogoVariant;
@@ -16,6 +16,12 @@ const logoConfig: Record<
     src: "/logo-full-light.jpg",
     width: 220,
     height: 73,
+    alt: "Knockout Math",
+  },
+  "full-dark": {
+    src: "/logo-full-dark.png",
+    width: 1024,
+    height: 339,
     alt: "Knockout Math",
   },
   "icon-light": {

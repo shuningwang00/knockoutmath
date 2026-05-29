@@ -70,10 +70,6 @@ a {
   animation: marquee-scroll 28s linear infinite;
 }
 
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
     animation: none;
@@ -91,7 +87,7 @@ a {
 }
 
 .testimonials-marquee-track {
-  animation: marquee-scroll 55s linear infinite;
+  animation: marquee-scroll 110s linear infinite;
 }
 
 .testimonials-marquee-track:hover {

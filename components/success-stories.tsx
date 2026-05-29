@@ -18,26 +18,10 @@ function TestimonialBanner({ item }: { item: Testimonial }) {
   );
 }
 
-function TestimonialMarqueeRow({
-  items,
-  reverse = false,
-  slow = false,
-}: {
-  items: Testimonial[];
-  reverse?: boolean;
-  slow?: boolean;
-}) {
-  const trackClass = [
-    "testimonials-marquee-track flex w-max",
-    reverse ? "testimonials-marquee-reverse" : "",
-    slow ? "testimonials-marquee-slow" : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
-
+function TestimonialMarqueeRow({ items }: { items: Testimonial[] }) {
   return (
     <div className="overflow-hidden py-2">
-      <div className={trackClass}>
+      <div className="testimonials-marquee-track flex w-max">
         <div className="flex shrink-0">
           {items.map((item) => (
             <TestimonialBanner key={`a-${item.id}`} item={item} />
@@ -54,10 +38,6 @@ function TestimonialMarqueeRow({
 }
 
 export default function SuccessStories() {
-  const midpoint = Math.ceil(studentTestimonials.length / 2);
-  const rowOne = studentTestimonials.slice(0, midpoint);
-  const rowTwo = studentTestimonials.slice(midpoint);
-
   return (
     <section
       id="our-story"
@@ -74,9 +54,8 @@ export default function SuccessStories() {
         </header>
       </div>
 
-      <div className="mt-10 space-y-4">
-        <TestimonialMarqueeRow items={rowOne} />
-        <TestimonialMarqueeRow items={rowTwo} reverse slow />
+      <div className="mt-10">
+        <TestimonialMarqueeRow items={studentTestimonials} />
       </div>
 
       <p className="mt-8 text-center">

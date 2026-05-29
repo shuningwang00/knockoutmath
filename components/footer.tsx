@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/logo";
-import { programmeLinks } from "@/lib/site";
+import { programmeLinks, WHATSAPP_URL } from "@/lib/site";
 
 const MAIN_BRANCH_ADDRESS =
   "144 Upper Bukit Timah Road, #03-38, Beauty World Centre, Singapore 588177";
@@ -8,7 +8,6 @@ const SECOND_BRANCH_ADDRESS =
   "170 Upper Bukit Timah Road, #14-02, Bukit Timah Shopping Centre, Singapore 588179";
 const GOOGLE_MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAIN_BRANCH_ADDRESS)}`;
 const MAP_EMBED_URL = `https://maps.google.com/maps?q=${encodeURIComponent(MAIN_BRANCH_ADDRESS)}&z=16&output=embed`;
-const WHATSAPP_URL = "https://wa.me/6584760600";
 
 const footerProgrammes = programmeLinks.filter((item) => item.href !== "/schedule/");
 

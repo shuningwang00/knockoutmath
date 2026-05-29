@@ -31,7 +31,7 @@ export default function PedagogySection() {
     <section id="pedagogy" className="scroll-mt-24 bg-[#f6f4ef]">
       <div className="relative flex min-h-[280px] items-center justify-center overflow-hidden md:min-h-[340px]">
         <Image
-          src="/pedagogy/kick-method-hero.jpg"
+          src="/pedagogy/kick-method-hero.webp"
           alt=""
           fill
           className="object-cover object-center"
@@ -71,8 +71,10 @@ export default function PedagogySection() {
       </div>
 
       <div className="border-y border-zinc-200/60 bg-[#f0ede6] py-10 md:py-12">
-        <h2 className="text-center text-2xl font-black uppercase tracking-tight text-black md:text-3xl">
-          Our 4-Step Teaching Approach
+        <h2 className="text-center text-2xl font-black uppercase leading-tight tracking-tight text-black md:text-3xl">
+          Our 4-Step In-House
+          <br />
+          Teaching Framework
         </h2>
       </div>
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import EnquirySection from "@/components/enquiry-section";
-import PedagogySection from "@/components/pedagogy-section";
+import GetToKnowSection from "@/components/get-to-know-section";
+import HashLink from "@/components/hash-link";
 import ProgrammeCards from "@/components/programme-cards";
 import SuccessStories from "@/components/success-stories";
 import YouTubeEmbed from "@/components/youtube-embed";
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const heroNavButtons = [
   { label: "Our Story", href: "/#our-story" },
   { label: "Our Programmes", href: "/#programmes" },
-  { label: "Our Pedagogy", href: "/#pedagogy" },
+  { label: "Our Pedagogy", href: "/about-us/#pedagogy" },
 ] as const;
 
 const buttonClassName =
@@ -31,17 +31,17 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-4xl px-4 py-16 text-center md:px-6 md:py-24">
           <p className="text-2xl font-bold leading-snug text-zinc-800 md:text-3xl md:leading-snug">
             Top-tier math tuition in Bukit Timah, backed by 20+ years of MOE experience. We make
-            numbers less scary and exams way more manageable.
+            numbers less scary and exams more manageable.
           </p>
-          <p className="font-heading mt-6 text-xl font-black text-orange-500 md:text-2xl">
+          <p className="font-body mt-6 text-xl font-black text-orange-500 md:text-2xl">
             Because math shouldn&apos;t feel like a horror movie.
           </p>
 
           <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             {heroNavButtons.map((item) => (
-              <Link key={item.href} href={item.href} className={buttonClassName}>
+              <HashLink key={item.href} href={item.href} className={buttonClassName}>
                 {item.label}
-              </Link>
+              </HashLink>
             ))}
           </div>
         </div>
@@ -60,7 +60,7 @@ export default function HomePage() {
 
       <ProgrammeCards />
 
-      <PedagogySection />
+      <GetToKnowSection />
 
       <EnquirySection />
     </div>

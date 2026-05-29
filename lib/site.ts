@@ -1,11 +1,14 @@
 export const SITE_URL = "https://www.knockoutmath.sg";
 
+export const WHATSAPP_URL = "https://wa.me/6584760600";
+
 export type SiteLink = {
   label: string;
   href: string;
 };
 
 export const programmeLinks: SiteLink[] = [
+  { label: "Schedule", href: "/schedule/" },
   { label: "Lower Secondary Math", href: "/secondary-math-tuition/" },
   {
     label: "Upper Secondary E-Math",
@@ -17,7 +20,6 @@ export const programmeLinks: SiteLink[] = [
     label: "Junior College H2 Math",
     href: "/junior-college-h2-math-tuition/",
   },
-  { label: "Schedule", href: "/schedule/" },
 ];
 
 export const primaryNavLinks: SiteLink[] = [

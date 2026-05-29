@@ -16,6 +16,24 @@ const schoolLevels = [
 const inputClassName =
   "w-full rounded-md border-0 bg-[#f3efe8] px-4 py-3 text-sm text-zinc-900 outline-none ring-orange-500 focus:ring-2";
 
+function ChevronDownIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      aria-hidden
+    >
+      <path
+        fillRule="evenodd"
+        d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+}
+
 export default function EnquiryForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -95,20 +113,23 @@ export default function EnquiryForm() {
         <label htmlFor="enquiry-level" className="mb-2 block text-sm text-white">
           School Level
         </label>
-        <select
-          id="enquiry-level"
-          name="schoolLevel"
-          required
-          defaultValue="JC 1"
-          className={`${inputClassName} appearance-none`}
-          disabled={status === "loading"}
-        >
-          {schoolLevels.map((level) => (
-            <option key={level} value={level}>
-              {level}
-            </option>
-          ))}
-        </select>
+        <div className="relative">
+          <select
+            id="enquiry-level"
+            name="schoolLevel"
+            required
+            defaultValue="JC 1"
+            className={`${inputClassName} cursor-pointer appearance-none pr-10`}
+            disabled={status === "loading"}
+          >
+            {schoolLevels.map((level) => (
+              <option key={level} value={level}>
+                {level}
+              </option>
+            ))}
+          </select>
+          <ChevronDownIcon className="pointer-events-none absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-500" />
+        </div>
       </div>
 
       <div>
