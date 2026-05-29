@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import JsonLd from "@/components/json-ld";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import TeachingMarquee from "@/components/teaching-marquee";
 import WhatsAppButton from "@/components/whatsapp-button";
+import { organizationJsonLd } from "@/lib/structured-data";
 import { SITE_URL } from "@/lib/site";
 
 const outfit = Outfit({
@@ -19,7 +21,8 @@ export const metadata: Metadata = {
     default: "Knockout Math",
     template: "%s | Knockout Math",
   },
-  description: "Helmed by ex-MOE Tutors",
+  description:
+    "Math tuition in Bukit Timah for Secondary, IP, and JC students. Helmed by ex-MOE tutors using the KICK Method at Beauty World Centre, Singapore.",
   icons: {
     icon: "/logo-icon-dark.png",
     apple: "/logo-icon-dark.png",
@@ -30,6 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={outfit.variable}>
       <body className="min-h-screen bg-white font-sans text-black antialiased">
+        <JsonLd data={organizationJsonLd()} />
         <div className="flex min-h-screen flex-col">
           <Navbar />
           <TeachingMarquee />

@@ -8,7 +8,9 @@ import {
   ProgrammeSyllabus,
 } from "@/components/programme-page-sections";
 import { lowerSecondaryProgramme } from "@/lib/programme-pages/lower-secondary";
+import { courseJsonLd } from "@/lib/structured-data";
 import { SITE_URL } from "@/lib/site";
+import JsonLd from "@/components/json-ld";
 
 const programme = lowerSecondaryProgramme;
 
@@ -23,6 +25,7 @@ export const metadata: Metadata = {
 export default function LowerSecondaryMathPage() {
   return (
     <div>
+      <JsonLd data={courseJsonLd(programme)} />
       <ProgrammeHero hero={programme.hero} />
       <ProgrammeFoundationNav foundation={programme.foundation} />
       <ProgrammeHighlights highlights={programme.highlights} />

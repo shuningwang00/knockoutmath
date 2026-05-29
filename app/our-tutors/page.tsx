@@ -3,8 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import EnquirySection from "@/components/enquiry-section";
 import FadeIn from "@/components/fade-in";
+import JsonLd from "@/components/json-ld";
 import PageHero from "@/components/page-hero";
 import TutorTimeline from "@/components/tutor-timeline";
+import { principalTutorJsonLd } from "@/lib/structured-data";
 import { SITE_URL } from "@/lib/site";
 import {
   principalTutor,
@@ -25,9 +27,27 @@ export const metadata: Metadata = {
 const ctaClassName =
   "font-heading inline-flex rounded-full border-2 border-black bg-black px-8 py-3.5 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:border-orange-500 hover:bg-orange-500";
 
+const tutorsPageUrl = `${SITE_URL}/our-tutors/`;
+
 export default function OurTutorsPage() {
+  const latestBio =
+    tutorTimeline[tutorTimeline.length - 1]?.body ??
+    "Principal Tutor at Knockout Math with 20+ years of MOE and tuition centre experience.";
+
   return (
     <div>
+      <JsonLd
+        data={principalTutorJsonLd({
+          name: principalTutor.name,
+          role: principalTutor.role,
+          image: principalTutor.image,
+          description: latestBio,
+          credentials: tutorCredentials.map(
+            (credential) => `${credential.title}: ${credential.detail}`,
+          ),
+          pageUrl: tutorsPageUrl,
+        })}
+      />
       <PageHero eyebrow="Our team" title="Our Tutors" />
 
       <section className="section-y border-b border-zinc-200 bg-white">

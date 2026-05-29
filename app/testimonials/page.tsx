@@ -4,7 +4,9 @@ import EnquirySection from "@/components/enquiry-section";
 import FadeIn from "@/components/fade-in";
 import TestimonialCard from "@/components/testimonial-card";
 import { pageTestimonials } from "@/lib/testimonials-page";
+import { testimonialsJsonLd } from "@/lib/structured-data";
 import { SITE_URL } from "@/lib/site";
+import JsonLd from "@/components/json-ld";
 
 export const metadata: Metadata = {
   title: "Student Reviews & Success Stories | Knockout Math Tuition Singapore",
@@ -24,6 +26,7 @@ const ctaOrangeClassName =
 export default function TestimonialsPage() {
   return (
     <div>
+      <JsonLd data={testimonialsJsonLd(pageTestimonials)} />
       <section className="border-b border-zinc-200 bg-gradient-to-b from-zinc-50 to-white">
         <FadeIn className="mx-auto w-full max-w-4xl px-4 py-10 text-center md:px-6 md:py-12">
           <p className="font-heading text-sm font-bold uppercase tracking-[0.2em] text-orange-500">

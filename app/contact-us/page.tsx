@@ -4,17 +4,22 @@ import ContactFaq from "@/components/contact-faq";
 import EnquiryForm from "@/components/enquiry-form";
 import FadeIn from "@/components/fade-in";
 import HashLink from "@/components/hash-link";
+import JsonLd from "@/components/json-ld";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
   CONTACT_PHONE_HREF,
+  contactFaqs,
   contactNavLinks,
   gettingHereSections,
   mainBranch,
   openingHours,
   secondBranch,
 } from "@/lib/contact";
+import { faqPageJsonLd } from "@/lib/structured-data";
 import { SITE_URL, WHATSAPP_URL } from "@/lib/site";
+
+const contactPageUrl = `${SITE_URL}/contact-us/`;
 
 export const metadata: Metadata = {
   title: "Contact Knockout Math | Enquire About Our Math Tuition in Singapore",
@@ -31,6 +36,7 @@ const navButtonClassName =
 export default function ContactUsPage() {
   return (
     <div>
+      <JsonLd data={faqPageJsonLd(contactFaqs, contactPageUrl)} />
       <section className="border-b border-zinc-200 bg-gradient-to-b from-zinc-50 to-white">
         <div className="mx-auto w-full max-w-4xl px-4 py-8 text-center md:px-6 md:py-10">
           <p className="font-heading text-sm font-bold uppercase tracking-[0.2em] text-orange-500">

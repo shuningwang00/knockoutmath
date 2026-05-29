@@ -30,10 +30,10 @@ export default function HomePage() {
     <div>
       <section className="bg-gradient-to-b from-zinc-50 to-white">
         <FadeIn className="mx-auto w-full max-w-4xl px-4 py-20 text-center md:px-6 md:py-28">
-          <p className="mx-auto max-w-prose text-2xl font-bold leading-snug text-zinc-800 md:text-3xl md:leading-snug">
+          <h1 className="mx-auto max-w-prose text-2xl font-bold leading-snug text-zinc-800 md:text-3xl md:leading-snug">
             Top-tier math tuition in Bukit Timah, backed by 20+ years of MOE experience. We make
             numbers less scary and exams more manageable.
-          </p>
+          </h1>
           <p className="mx-auto mt-6 max-w-prose text-2xl font-bold leading-snug text-orange-500 md:text-3xl md:leading-snug">
             Because math shouldn&apos;t feel like a horror movie.
           </p>
