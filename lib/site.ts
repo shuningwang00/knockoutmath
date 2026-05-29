@@ -62,4 +62,15 @@ export const allSitePages: SiteLink[] = [
   { label: "Testimonials", href: "/testimonials/" },
   { label: "Contact Us", href: "/contact-us/" },
   { label: "Free Trial", href: "/free-math-trial/" },
+  { label: "Privacy Policy", href: "/privacy-policy/" },
+  { label: "Terms & Conditions", href: "/terms-conditions/" },
+  { label: "Knockout Math", href: "/knockout-math/" },
+  {
+    label: "Leading Math Tuition Centre",
+    href: "/knockout-math-leading-math-tuition-centre/",
+  },
+  {
+    label: "Master Math with Top Tutors",
+    href: "/master-math-with-singapores-top-tutors/",
+  },
 ];

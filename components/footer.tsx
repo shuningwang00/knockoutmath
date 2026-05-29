@@ -121,9 +121,17 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-zinc-800">
-        <p className="mx-auto w-full max-w-6xl px-4 py-4 text-xs text-zinc-400 md:px-6">
-          © 2026 Knockout Learning Centre. All rights reserved.
-        </p>
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-4 text-xs text-zinc-400 sm:flex-row sm:items-center sm:justify-between md:px-6">
+          <p>© 2026 Knockout Learning Centre. All rights reserved.</p>
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
+            <Link href="/privacy-policy/" className="transition hover:text-orange-400">
+              Privacy Policy
+            </Link>
+            <Link href="/terms-conditions/" className="transition hover:text-orange-400">
+              Terms &amp; Conditions
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );
