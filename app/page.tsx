@@ -49,7 +49,7 @@ export default function HomePage() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-[#f6f4ef]/88" aria-hidden />
-        <FadeIn className="relative z-10 mx-auto w-full max-w-4xl px-4 py-20 text-center md:px-6 md:py-28">
+        <FadeIn className="relative z-10 mx-auto w-full max-w-4xl px-4 pb-6 pt-20 text-center md:px-6 md:pb-8 md:pt-28">
           <h1 className="font-heading mx-auto max-w-prose text-2xl font-black uppercase leading-snug tracking-tight text-black md:text-4xl md:leading-tight">
             Math tuition in Bukit Timah for Secondary, IP & JC students
           </h1>
@@ -71,7 +71,7 @@ export default function HomePage() {
         </FadeIn>
       </section>
 
-      <section className="bg-gradient-to-b from-white to-zinc-50 pb-12 pt-2">
+      <section className="bg-[#f6f4ef] pb-12 pt-6 md:pt-8">
         <FadeIn className="mx-auto w-full max-w-4xl px-4 md:px-6">
           <YouTubeEmbed
             videoId="7_idzBKfRdo"
