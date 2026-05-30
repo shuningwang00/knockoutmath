@@ -9,7 +9,7 @@ import {
 } from "@/components/programme-page-sections";
 import { lowerSecondaryProgramme } from "@/lib/programme-pages/lower-secondary";
 import { programmePageMetadata } from "@/lib/seo";
-import { courseJsonLd } from "@/lib/structured-data";
+import { breadcrumbJsonLd, courseJsonLd } from "@/lib/structured-data";
 import JsonLd from "@/components/json-ld";
 
 const programme = lowerSecondaryProgramme;
@@ -20,6 +20,7 @@ export default function LowerSecondaryMathPage() {
   return (
     <div>
       <JsonLd data={courseJsonLd(programme)} />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", href: "/" }, { name: programme.hero.title, href: programme.slug }])} />
       <ProgrammeHero hero={programme.hero} />
       <ProgrammeFoundationNav foundation={programme.foundation} />
       <ProgrammeHighlights highlights={programme.highlights} />

@@ -29,6 +29,14 @@ export const metadata: Metadata = {
     icon: "/logo-icon-dark.png",
     apple: "/logo-icon-dark.png",
   },
+  themeColor: "#f97316",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
+  },
   ...siteOpenGraphDefaults,
 };
 

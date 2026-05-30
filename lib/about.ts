@@ -10,7 +10,7 @@ export const aboutMission =
 export const teamSections = [
   {
     title: "Tutors",
-    body: "Our dynamic team is made up of expert tutors who not only know math inside and out but also know how to make it fun and interactive. We bring together years of MOE and private tuition teaching experience, innovative technology, and a deep understanding of student needs to create a learning environment where every student can thrive.",
+    body: "Our team brings together ex-MOE educators and specialist coaches from competitive exam backgrounds — the best of classroom pedagogy and results-focused strategy. Principal Tutor Peng Junyang personally mentors every tutor through our Teacher Training Programme (TTP), ensuring consistent standards in notes, resources, and delivery. Together, we create a learning environment where students build understanding, confidence, and exam-ready fluency.",
     cta: { label: "Learn more about our tutors", href: "/our-tutors/" },
   },
   {
@@ -50,7 +50,7 @@ export const comparisonRows: ComparisonRow[] = [
     label: "Tutors",
     knockout: [
       "Passionate tutors specialising in math only — updated notes, resources, and pedagogy",
-      "Mentored and led by MOE-trained specialists with 20+ years of experience",
+      "Ex-MOE educators and competitive-exam coaches, mentored by Principal Tutor Peng Junyang through TTP",
     ],
     traditional: [
       "Generic tutors teaching multiple subjects",

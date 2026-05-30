@@ -6,7 +6,9 @@ import ProgrammeCards from "@/components/programme-cards";
 import SuccessStories from "@/components/success-stories";
 import YouTubeEmbed from "@/components/youtube-embed";
 
+import JsonLd from "@/components/json-ld";
 import { createPageMetadata } from "@/lib/seo";
+import { videoObjectJsonLd } from "@/lib/structured-data";
 
 export const metadata = createPageMetadata({
   title: "Best Math Tuition in Singapore for Secondary & JC Students",
@@ -27,6 +29,15 @@ const buttonClassName =
 export default function HomePage() {
   return (
     <div>
+      <JsonLd
+        data={videoObjectJsonLd({
+          name: "From Stress to Success: Ace PSLE, O-Level, A-Level & IP Math in Singapore | Knockout Math",
+          description:
+            "See how Knockout Math helps Secondary, IP, and JC students conquer math exams using the KICK Method. Expert tuition at our Bukit Timah centre.",
+          videoId: "7_idzBKfRdo",
+          uploadDate: "2024-01-01",
+        })}
+      />
       <section className="bg-gradient-to-b from-zinc-50 to-white">
         <FadeIn className="mx-auto w-full max-w-4xl px-4 py-20 text-center md:px-6 md:py-28">
           <h1 className="font-heading mx-auto max-w-prose text-2xl font-black uppercase leading-snug tracking-tight text-black md:text-4xl md:leading-tight">

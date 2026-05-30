@@ -9,7 +9,7 @@ import {
 } from "@/components/programme-page-sections";
 import { juniorCollegeH2MathProgramme } from "@/lib/programme-pages/junior-college-h2-math";
 import { programmePageMetadata } from "@/lib/seo";
-import { courseJsonLd } from "@/lib/structured-data";
+import { breadcrumbJsonLd, courseJsonLd } from "@/lib/structured-data";
 import JsonLd from "@/components/json-ld";
 
 const programme = juniorCollegeH2MathProgramme;
@@ -20,6 +20,7 @@ export default function JuniorCollegeH2MathPage() {
   return (
     <div>
       <JsonLd data={courseJsonLd(programme)} />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", href: "/" }, { name: programme.hero.title, href: programme.slug }])} />
       <ProgrammeHero hero={programme.hero} />
       <ProgrammeFoundationNav foundation={programme.foundation} />
       <ProgrammeHighlights highlights={programme.highlights} />

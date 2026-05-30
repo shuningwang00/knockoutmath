@@ -107,6 +107,6 @@ export const contactFaqs: ContactFaq[] = [
     id: "teachers",
     question: "What qualifications do your teachers have?",
     answer:
-      "Our tutors are personally selected and trained through Knockout Math's Teacher Training Programme (TTP) to power their teaching ability and to strengthen the adoption of our unique KICK method. Not all our tutors are MOE-trained — and that's intentional. We select passionate individuals with strong math foundations and a natural ability to connect with students. They are then trained and mentored by experienced educators, including MOE-trained teachers, to ensure every lesson meets Knockout standards and the relevant curriculums.",
+      "Our tutors include both ex-MOE educators and specialist coaches from competitive exam backgrounds — giving students the best of classroom pedagogy and results-focused strategy. Every tutor is personally selected and developed through Knockout Math's Teacher Training Programme (TTP), with Principal Tutor Peng Junyang mentoring the team on curriculum, delivery, and the KICK Method so every lesson meets Knockout standards across Secondary, IP, and JC programmes.",
   },
 ];

@@ -172,7 +172,13 @@ export default function EnquiryForm() {
       ) : null}
 
       {status === "error" ? (
-        <p className="text-sm font-semibold text-red-400">{errorMessage}</p>
+        <p
+          role="alert"
+          aria-live="polite"
+          className="text-sm font-semibold text-red-400"
+        >
+          {errorMessage}
+        </p>
       ) : null}
 
       <button

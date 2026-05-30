@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run generate-og && next build",
+    "build": "node scripts/optimize-images.mjs && npm run generate-og && next build",
     "start": "next start",
     "lint": "eslint .",
     "optimize-images": "node scripts/optimize-images.mjs",

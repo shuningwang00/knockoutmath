@@ -52,7 +52,7 @@ export default function AboutUsPage() {
                         ? "/programmes/DSC08407.webp"
                         : "/programmes/DSC08232.webp"
                     }
-                    alt=""
+                    alt={`Knockout Math ${section.title} team`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"

@@ -162,7 +162,13 @@ export default function FreeTrialForm() {
       ) : null}
 
       {status === "error" ? (
-        <p className="text-sm font-semibold text-red-600">{errorMessage}</p>
+        <p
+          role="alert"
+          aria-live="polite"
+          className="text-sm font-semibold text-red-600"
+        >
+          {errorMessage}
+        </p>
       ) : null}
 
       <button

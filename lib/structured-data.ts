@@ -86,6 +86,12 @@ export function organizationJsonLd(googleRating?: GooglePlaceRating | null) {
           },
           {
             "@type": "OpeningHoursSpecification",
+            dayOfWeek: "Wednesday",
+            opens: "00:00",
+            closes: "00:00",
+          },
+          {
+            "@type": "OpeningHoursSpecification",
             dayOfWeek: ["Saturday", "Sunday"],
             opens: "09:00",
             closes: "18:00",
@@ -203,6 +209,45 @@ type PrincipalTutorSchemaInput = {
   credentials: string[];
   pageUrl: string;
 };
+
+/** BreadcrumbList schema for any page in the site hierarchy. */
+export function breadcrumbJsonLd(crumbs: { name: string; href: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: `${SITE_URL}${crumb.href}`,
+    })),
+  };
+}
+
+/** VideoObject schema for embedded YouTube videos. */
+export function videoObjectJsonLd({
+  name,
+  description,
+  videoId,
+  uploadDate,
+}: {
+  name: string;
+  description: string;
+  videoId: string;
+  uploadDate: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name,
+    description,
+    embedUrl: `https://www.youtube.com/embed/${videoId}`,
+    url: `https://www.youtube.com/watch?v=${videoId}`,
+    thumbnailUrl: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+    uploadDate,
+    publisher: { "@id": ORGANIZATION_ID },
+  };
+}
 
 /** Person schema for the principal tutor profile. */
 export function principalTutorJsonLd(tutor: PrincipalTutorSchemaInput) {
