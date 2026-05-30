@@ -1,5 +1,5 @@
 import sharp from "sharp";
-import { mkdir, readdir, unlink } from "fs/promises";
+import { access, mkdir, readdir, unlink } from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -62,6 +62,35 @@ function formatBytes(bytes) {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
+async function fileExists(filePath) {
+  try {
+    await access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function resolveOptimizableFile(inputPath, outDir) {
+  if (await fileExists(inputPath)) {
+    return inputPath;
+  }
+
+  const parsed = path.parse(inputPath);
+  const outputDir = outDir ?? parsed.dir;
+  const webpPath = path.join(outputDir, `${parsed.name}.webp`);
+
+  if (await fileExists(webpPath)) {
+    console.log(
+      `Skip ${path.basename(inputPath)} (already optimized as ${path.basename(webpPath)})`,
+    );
+    return null;
+  }
+
+  console.warn(`Skip missing ${inputPath}`);
+  return null;
+}
+
 for (const job of jobs) {
   if (job.outDir) {
     await mkdir(job.outDir, { recursive: true });
@@ -74,7 +103,9 @@ for (const job of jobs) {
         .map((name) => path.join(job.dir, name));
 
   for (const file of files) {
-    await optimizeFile(file, job.maxWidth, job.quality, job.outDir);
+    const inputPath = await resolveOptimizableFile(file, job.outDir);
+    if (!inputPath) continue;
+    await optimizeFile(inputPath, job.maxWidth, job.quality, job.outDir);
   }
 }
 
