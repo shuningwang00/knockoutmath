@@ -1,7 +1,11 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
-
-const ENQUIRY_TO = "contact@knockoutmath.sg";
+import {
+  getEnquiryFromEmail,
+  getEnquiryToEmail,
+  getResendApiKey,
+  resendErrorMessage,
+} from "@/lib/email";
 
 type EnquiryPayload = {
   name: string;
@@ -41,7 +45,7 @@ export async function POST(request: Request) {
     const schoolLevel = body.schoolLevel.trim();
     const message = body.message.trim();
 
-    const apiKey = process.env.RESEND_API_KEY;
+    const apiKey = getResendApiKey();
     if (!apiKey) {
       console.error("RESEND_API_KEY is not configured");
       return NextResponse.json(
@@ -53,14 +57,14 @@ export async function POST(request: Request) {
       );
     }
 
-    const from =
-      process.env.ENQUIRY_FROM_EMAIL ?? "Knockout Math Enquiries <onboarding@resend.dev>";
+    const from = getEnquiryFromEmail();
+    const to = getEnquiryToEmail();
 
     const resend = new Resend(apiKey);
 
     const { error } = await resend.emails.send({
       from,
-      to: ENQUIRY_TO,
+      to,
       replyTo: contact.includes("@") ? contact : undefined,
       subject: `New enquiry from ${name} (${schoolLevel})`,
       html: `
@@ -74,9 +78,13 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      console.error("Resend error:", error);
+      const details = resendErrorMessage(error);
+      console.error("Resend error:", { from, to, details, error });
       return NextResponse.json(
-        { error: "Could not send your message. Please try again or WhatsApp us." },
+        {
+          error: "Could not send your message. Please try again or WhatsApp us.",
+          details,
+        },
         { status: 502 },
       );
     }

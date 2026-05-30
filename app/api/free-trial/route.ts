@@ -1,8 +1,12 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import {
+  getEnquiryFromEmail,
+  getEnquiryToEmail,
+  getResendApiKey,
+  resendErrorMessage,
+} from "@/lib/email";
 import { freeTrialLevels } from "@/lib/free-trial";
-
-const ENQUIRY_TO = "contact@knockoutmath.sg";
 
 type FreeTrialPayload = {
   name: string;
@@ -42,7 +46,7 @@ export async function POST(request: Request) {
     const level = body.level.trim();
     const school = body.school.trim();
 
-    const apiKey = process.env.RESEND_API_KEY;
+    const apiKey = getResendApiKey();
     if (!apiKey) {
       console.error("RESEND_API_KEY is not configured");
       return NextResponse.json(
@@ -54,14 +58,14 @@ export async function POST(request: Request) {
       );
     }
 
-    const from =
-      process.env.ENQUIRY_FROM_EMAIL ?? "Knockout Math Enquiries <onboarding@resend.dev>";
+    const from = getEnquiryFromEmail();
+    const to = getEnquiryToEmail();
 
     const resend = new Resend(apiKey);
 
     const { error } = await resend.emails.send({
       from,
-      to: ENQUIRY_TO,
+      to,
       replyTo: contact.includes("@") ? contact : undefined,
       subject: `New free trial request from ${name} (${level})`,
       html: `
@@ -74,9 +78,13 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      console.error("Resend error:", error);
+      const details = resendErrorMessage(error);
+      console.error("Resend error:", { from, to, details, error });
       return NextResponse.json(
-        { error: "Could not send your request. Please try again or call us at +65 8476 0600." },
+        {
+          error: "Could not send your request. Please try again or call us at +65 8476 0600.",
+          details,
+        },
         { status: 502 },
       );
     }

@@ -60,11 +60,19 @@ export default function EnquiryForm() {
         body: JSON.stringify(payload),
       });
 
-      const data = (await response.json()) as { error?: string; success?: boolean };
+      const data = (await response.json()) as {
+        error?: string;
+        details?: string;
+        success?: boolean;
+      };
 
       if (!response.ok) {
         setStatus("error");
-        setErrorMessage(data.error ?? "Could not send your message.");
+        setErrorMessage(
+          data.details
+            ? `${data.error ?? "Could not send your message."} (${data.details})`
+            : (data.error ?? "Could not send your message."),
+        );
         return;
       }
 
