@@ -6,6 +6,12 @@ import {
   getResendApiKey,
   resendErrorMessage,
 } from "@/lib/email";
+import {
+  getClientIp,
+  isHoneypotFilled,
+  isRateLimited,
+  rateLimitErrorMessage,
+} from "@/lib/form-spam";
 
 type EnquiryPayload = {
   name: string;
@@ -32,6 +38,15 @@ function isValidPayload(body: unknown): body is EnquiryPayload {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
+
+    if (isHoneypotFilled(body)) {
+      return NextResponse.json({ success: true });
+    }
+
+    const clientIp = getClientIp(request);
+    if (isRateLimited(clientIp)) {
+      return NextResponse.json({ error: rateLimitErrorMessage }, { status: 429 });
+    }
 
     if (!isValidPayload(body)) {
       return NextResponse.json(

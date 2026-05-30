@@ -41,6 +41,7 @@ export default function FreeTrialForm() {
       contact: String(formData.get("contact") ?? ""),
       level: String(formData.get("level") ?? ""),
       school: String(formData.get("school") ?? ""),
+      website: String(formData.get("website") ?? ""),
     };
 
     try {
@@ -76,6 +77,15 @@ export default function FreeTrialForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        style={{ display: "none" }}
+        aria-hidden
+      />
+
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="trial-name" className="font-heading mb-2 block text-xs font-bold uppercase tracking-wide text-zinc-700">

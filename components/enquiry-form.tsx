@@ -51,6 +51,7 @@ export default function EnquiryForm() {
       contact: String(formData.get("contact") ?? ""),
       schoolLevel: String(formData.get("schoolLevel") ?? ""),
       message: String(formData.get("message") ?? ""),
+      website: String(formData.get("website") ?? ""),
     };
 
     try {
@@ -86,6 +87,15 @@ export default function EnquiryForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        style={{ display: "none" }}
+        aria-hidden
+      />
+
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="enquiry-name" className="mb-2 block text-sm text-white">
