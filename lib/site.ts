@@ -23,6 +23,7 @@ export type SiteLink = {
 
 export const programmeLinks: SiteLink[] = [
   { label: "Schedule", href: "/schedule/" },
+  { label: "Resources", href: "/resources/" },
   { label: "Lower Secondary Math", href: "/secondary-math-tuition/" },
   {
     label: "Upper Secondary E-Math",
@@ -48,6 +49,7 @@ export const allSitePages: SiteLink[] = [
   { label: "About Us", href: "/about-us/" },
   { label: "Our Tutors", href: "/our-tutors/" },
   { label: "Schedule", href: "/schedule/" },
+  { label: "Resources", href: "/resources/" },
   { label: "Lower Secondary Math", href: "/secondary-math-tuition/" },
   {
     label: "Upper Secondary E-Math",

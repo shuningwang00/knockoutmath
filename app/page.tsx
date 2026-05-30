@@ -5,6 +5,7 @@ import HashLink from "@/components/hash-link";
 import ProgrammeCards from "@/components/programme-cards";
 import SuccessStories from "@/components/success-stories";
 import YouTubeEmbed from "@/components/youtube-embed";
+import Image from "next/image";
 
 import JsonLd from "@/components/json-ld";
 import { createPageMetadata } from "@/lib/seo";
@@ -38,8 +39,17 @@ export default function HomePage() {
           uploadDate: "2024-01-01",
         })}
       />
-      <section className="bg-gradient-to-b from-zinc-50 to-white">
-        <FadeIn className="mx-auto w-full max-w-4xl px-4 py-20 text-center md:px-6 md:py-28">
+      <section className="relative overflow-hidden border-b border-zinc-200">
+        <Image
+          src="/programmes/DSC08407.webp"
+          alt=""
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-[#f6f4ef]/88" aria-hidden />
+        <FadeIn className="relative z-10 mx-auto w-full max-w-4xl px-4 py-20 text-center md:px-6 md:py-28">
           <h1 className="font-heading mx-auto max-w-prose text-2xl font-black uppercase leading-snug tracking-tight text-black md:text-4xl md:leading-tight">
             Math tuition in Bukit Timah for Secondary, IP & JC students
           </h1>
