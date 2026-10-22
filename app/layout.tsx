@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Knockout Math",
   },
   description:
-    "Math tuition in Bukit Timah for Secondary, IP, and JC students. Helmed by ex-MOE tutors using the KICK Method at Beauty World Centre, Singapore.",
+    "Math tuition in Bukit Timah for Primary, Secondary, and JC students. Helmed by ex-MOE tutors using the KICK Method at Beauty World Centre, Singapore.",
   icons: {
     icon: "/logo-icon-dark.png",
     apple: "/logo-icon-dark.png",

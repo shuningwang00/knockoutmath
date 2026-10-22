@@ -13,10 +13,7 @@ export const teamSections = [
     body: "Our team brings together ex-MOE educators and specialist coaches from competitive exam backgrounds — the best of classroom pedagogy and results-focused strategy. Principal Tutor Peng Junyang personally mentors every tutor through our Teacher Training Programme (TTP), ensuring consistent standards in notes, resources, and delivery. Together, we create a learning environment where students build understanding, confidence, and exam-ready fluency.",
     cta: { label: "Learn more about our tutors", href: "/our-tutors/" },
   },
-  {
-    title: "Programme Designers",
-    body: "Alongside our expert tutors, we have a team of programme designers—young, dynamic individuals passionate about rethinking traditional teaching methods. These creative professionals design interactive and engaging programmes that make math feel fresh, exciting, and relevant. They focus on turning each lesson into an experience, ensuring that students learn while enjoying the process.",
-  },
+
 ] as const;
 
 export const comparisonRows: ComparisonRow[] = [

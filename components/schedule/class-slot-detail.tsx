@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import type { ClassSlot } from "@/lib/schedule";
-import { DAY_LABELS, SCHEDULE_LOCATION } from "@/lib/schedule";
+import { DAY_LABELS, SCHEDULE_LOCATION, isDummySlot } from "@/lib/schedule";
 
 type ClassSlotDetailProps = {
   slot: ClassSlot | null;
@@ -35,7 +35,8 @@ export default function ClassSlotDetail({ slot, onClose }: ClassSlotDetailProps)
 
   if (!slot) return null;
 
-  const isFull = slot.status === "full";
+  const isDummy = isDummySlot(slot);
+  const isFull = !isDummy && slot.status === "full";
 
   return (
     <div className="fixed inset-0 z-[60] flex items-end justify-center p-4 sm:items-center" role="presentation">
@@ -74,10 +75,18 @@ export default function ClassSlotDetail({ slot, onClose }: ClassSlotDetailProps)
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <span
               className={`font-heading rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide ${
-                isFull ? "bg-zinc-200 text-zinc-600" : "bg-orange-100 text-orange-700"
+                isDummy
+                  ? "bg-zinc-200 text-zinc-500"
+                  : isFull
+                    ? "bg-zinc-200 text-zinc-600"
+                    : "bg-orange-100 text-orange-700"
               }`}
             >
-              {isFull ? "Waitlist only" : "Open for enrolment"}
+              {isDummy
+                ? "Internal / not for sign-up"
+                : isFull
+                  ? "Waitlist only"
+                  : "Open for enrolment"}
             </span>
           </div>
 
@@ -99,14 +108,16 @@ export default function ClassSlotDetail({ slot, onClose }: ClassSlotDetailProps)
           </p>
         </div>
 
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <Link href="/free-math-trial/" className={`${ctaOrange} justify-center`}>
-            Free trial
-          </Link>
-          <Link href="#enquire" onClick={onClose} className={`${ctaPrimary} justify-center`}>
-            {isFull ? "Join waitlist" : "Enquire now"}
-          </Link>
-        </div>
+        {!isDummy ? (
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <Link href="/free-math-trial/" className={`${ctaOrange} justify-center`}>
+              Free trial
+            </Link>
+            <Link href="#enquire" onClick={onClose} className={`${ctaPrimary} justify-center`}>
+              {isFull ? "Join waitlist" : "Enquire now"}
+            </Link>
+          </div>
+        ) : null}
 
         <Link
           href={slot.programmeHref}

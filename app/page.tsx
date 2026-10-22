@@ -4,6 +4,7 @@ import GetToKnowSection from "@/components/get-to-know-section";
 import HashLink from "@/components/hash-link";
 import ProgrammeCards from "@/components/programme-cards";
 import SuccessStories from "@/components/success-stories";
+import StatsSection from "@/components/stats-section";
 import YouTubeEmbed from "@/components/youtube-embed";
 import Image from "next/image";
 
@@ -14,7 +15,7 @@ import { videoObjectJsonLd } from "@/lib/structured-data";
 export const metadata = createPageMetadata({
   title: "Best Math Tuition in Singapore for Secondary & JC Students",
   description:
-    "Knockout Math — expert tuition in Bukit Timah for Secondary G3, E-Math, A-Math, IP, and JC H2. Ex-MOE tutors, KICK Method, proven O-Level and A-Level results. Book a free trial.",
+    "Knockout Math — expert tuition in Bukit Timah for Primary, Secondary G3, E-Math, A-Math, and JC H2. Ex-MOE tutors, KICK Method, proven PSLE, O-Level and A-Level results. Book a free trial.",
   path: "/",
 });
 
@@ -32,10 +33,10 @@ export default function HomePage() {
     <div>
       <JsonLd
         data={videoObjectJsonLd({
-          name: "From Stress to Success: Ace PSLE, O-Level, A-Level & IP Math in Singapore | Knockout Math",
+          name: "From Stress to Success: Ace PSLE, O-Level & A-Level Math in Singapore | Knockout Math",
           description:
-            "See how Knockout Math helps Secondary, IP, and JC students conquer math exams using the KICK Method. Expert tuition at our Bukit Timah centre.",
-          videoId: "7_idzBKfRdo",
+            "See how Knockout Math helps Primary, Secondary, and JC students conquer math exams using the KICK Method. Expert tuition at our Bukit Timah centre.",
+          videoId: "UAFLsWdUmak",
           uploadDate: "2024-01-01",
         })}
       />
@@ -51,7 +52,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[#f6f4ef]/88" aria-hidden />
         <FadeIn className="relative z-10 mx-auto w-full max-w-4xl px-4 pb-6 pt-20 text-center md:px-6 md:pb-8 md:pt-28">
           <h1 className="font-heading mx-auto max-w-prose text-2xl font-black uppercase leading-snug tracking-tight text-black md:text-4xl md:leading-tight">
-            Math tuition in Bukit Timah for Secondary, IP & JC students
+            Math tuition in Bukit Timah for Primary, Secondary & JC students
           </h1>
           <p className="font-body mx-auto mt-6 max-w-prose text-lg leading-relaxed text-zinc-700 md:text-xl">
             Knockout Math — 20+ years of MOE experience. We make numbers less scary and exams more
@@ -74,11 +75,13 @@ export default function HomePage() {
       <section className="bg-[#f6f4ef] pb-12 pt-6 md:pt-8">
         <FadeIn className="mx-auto w-full max-w-4xl px-4 md:px-6">
           <YouTubeEmbed
-            videoId="7_idzBKfRdo"
+            videoId="UAFLsWdUmak"
             title="Knockout Math — tuition in Bukit Timah"
           />
         </FadeIn>
       </section>
+
+      <StatsSection />
 
       <SuccessStories />
 

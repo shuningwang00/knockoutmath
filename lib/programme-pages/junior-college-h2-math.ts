@@ -151,13 +151,13 @@ export const juniorCollegeH2MathProgramme: ProgrammePageContent = {
     },
   ],
   fees: {
-    amount: "$400",
+    amount: "$440",
     unit: "per 4 lessons",
     intro:
       "JC H2 Math is billed in 4-lesson blocks — materials included, with pro-rated options if you join mid-term.",
     notes: [
       "Pro-rated for mid-term enrolments",
-      "Registration fee: $40 (one-time)",
+      "Registration fee: $50 (one-time)",
       "Material fees included",
     ],
   },

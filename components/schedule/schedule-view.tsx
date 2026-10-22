@@ -6,22 +6,25 @@ import ScheduleFilters, { type ScheduleViewMode } from "@/components/schedule/sc
 import ScheduleGrid from "@/components/schedule/schedule-grid";
 import ScheduleList from "@/components/schedule/schedule-list";
 import {
-  classSlots,
   countOpenSlots,
   filterSlots,
   type ClassSlot,
   type LevelFilter,
 } from "@/lib/schedule";
 
-export default function ScheduleView() {
+export default function ScheduleView({
+  initialSlots,
+}: {
+  initialSlots: ClassSlot[];
+}) {
   const [level, setLevel] = useState<LevelFilter>("all");
   const [weekendsOnly, setWeekendsOnly] = useState(false);
   const [viewMode, setViewMode] = useState<ScheduleViewMode>("grid");
   const [selectedSlot, setSelectedSlot] = useState<ClassSlot | null>(null);
 
   const filteredSlots = useMemo(
-    () => filterSlots(classSlots, level, weekendsOnly),
-    [level, weekendsOnly],
+    () => filterSlots(initialSlots, level, weekendsOnly),
+    [initialSlots, level, weekendsOnly],
   );
 
   const openCount = countOpenSlots(filteredSlots);

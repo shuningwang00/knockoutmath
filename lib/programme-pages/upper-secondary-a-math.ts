@@ -152,17 +152,17 @@ export const upperSecondaryAMathProgramme: ProgrammePageContent = {
     },
   ],
   fees: {
-    amount: "$340",
+    amount: "$360",
     unit: "per 4 lessons",
     intro:
       "Upper secondary A-Math is billed in 4-lesson blocks — materials included, with pro-rated options if you join mid-term. Take both E-Math and A-Math for a bundle rate.",
     bundle: {
-      amount: "$620",
+      amount: "$640",
       label: "E-Math + A-Math bundle (both subjects)",
     },
     notes: [
       "Pro-rated for mid-term enrolments",
-      "Registration fee: $40 (one-time)",
+      "Registration fee: $50 (one-time)",
       "Material fees included",
     ],
   },

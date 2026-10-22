@@ -47,13 +47,6 @@ export const sampleNoteCategories: SampleNoteCategory[] = [
     notes: [],
   },
   {
-    id: "secondary-ip-math",
-    title: "Secondary IP Math",
-    description: "Integrated Programme samples aligned to advanced secondary sequencing.",
-    programmeHref: "/secondary-ip-math-tuition/",
-    notes: [],
-  },
-  {
     id: "jc-h2-math",
     title: "Junior College H2 Math",
     description: "H2 Math samples — vectors, complex numbers, statistics, and pure math topics.",

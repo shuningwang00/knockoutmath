@@ -64,3 +64,48 @@ export const tutorCredentials = [
       "National Council of Teachers of Mathematics, Association of Mathematics Teacher Education, Singapore Mathematical Society, London Mathematical Society, The Mathematical Society, The Mathematical Association (UK)",
   },
 ];
+
+export const additionalTutors = [
+  {
+    name: "Cynthia Koh",
+    role: "Secondary & JC Math",
+    image: "/tutors/cynkoh.jpeg",
+    imageAlt: "Cynthia Koh, Tutor at Knockout Math",
+    bio: "I always want my students to understand the 'why' behind Mathematics, rather than simply memorising formulas. I believe every student learns differently, so I guide them patiently, helping them build confidence through practice and discover that they are more capable than they think.",
+    credentials: [
+      {
+        title: "5 Years of Teaching Experience",
+        detail: "Across established centres and private tutoring",
+      },
+      {
+        title: "NUS Mathematics Graduate",
+        detail: "B.Sc. (Hons.) in Mathematics, Second Major in Life Sciences, National University of Singapore",
+      },
+      {
+        title: "Member of:",
+        detail: "Singapore Mathematical Society (SMS), Mathematical Association of America (MAA)",
+      },
+    ],
+  },
+  {
+    name: "Alyssa Khoo",
+    role: "Primary & Secondary Math",
+    image: "/tutors/alyssa-khoo.jpg",
+    imageAlt: "Ms Alyssa Khoo, Tutor at Knockout Math",
+    bio: "Every mathematical problem is an opportunity to think, question, and explore different ways of finding a solution. I aim to help my students develop their own approach to problem-solving, while being someone they can count on when things get challenging.",
+    credentials: [
+      {
+        title: "4 Years of Teaching Experience",
+        detail: "Across established centres and private tutoring",
+      },
+      {
+        title: "NUS Data Science & Analytics Graduate",
+        detail: "B.Sc. (Hons.) in Data Science & Analytics, Second Major in Quantitative Finance, National University of Singapore",
+      },
+      {
+        title: "Member of:",
+        detail: "Singapore Mathematical Society (SMS), Association of Mathematics Educators (AME)",
+      },
+    ],
+  },
+];

@@ -2,17 +2,25 @@ import Link from "next/link";
 import EnquirySection from "@/components/enquiry-section";
 import ProgrammeObjectives from "@/components/schedule/programme-objectives";
 import ScheduleView from "@/components/schedule/schedule-view";
+import { loadClassesFromSheet } from "@/lib/classes-sheet/load";
 import { SCHEDULE_LOCATION } from "@/lib/schedule";
 import { createPageMetadata } from "@/lib/seo";
 
+export const revalidate = 120;
+
 export const metadata = createPageMetadata({
-  title: "2026 Class Schedule | Math Tuition Timetable",
+  title: "2027 Class Schedule | Math Tuition Timetable",
   description:
-    "View Knockout Math's 2026 class schedule for Primary, Secondary, and JC H2 Math tuition at our Bukit Timah centre. Filter by level, check availability, and book a free trial.",
+    "View Knockout Math's 2027 class schedule for Primary, Secondary, and JC H2 Math tuition at our Bukit Timah centre. Filter by level, check availability, and book a free trial.",
   path: "/schedule/",
 });
 
-export default function SchedulePage() {
+export default async function SchedulePage() {
+  const { slots, error, source } = await loadClassesFromSheet();
+  if (error) {
+    console.error("[schedule] classes sheet:", error, { source });
+  }
+
   return (
     <div>
       <section className="border-b border-zinc-200 bg-gradient-to-b from-zinc-50 to-white">
@@ -21,7 +29,7 @@ export default function SchedulePage() {
             Timetable
           </p>
           <h1 className="font-heading mt-2 text-3xl font-black uppercase leading-tight tracking-tight text-black md:text-5xl">
-            2026 Class Schedule
+            2027 Class Schedule
           </h1>
           <p className="font-body mt-4 max-w-2xl text-base leading-relaxed text-zinc-700 md:text-lg">
             Browse our weekly timetable for Primary, Secondary, and JC classes at Knockout Math
@@ -59,7 +67,7 @@ export default function SchedulePage() {
 
       <section className="bg-white py-6 md:py-8">
         <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
-          <ScheduleView />
+          <ScheduleView initialSlots={slots} />
         </div>
       </section>
 

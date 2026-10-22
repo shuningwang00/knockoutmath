@@ -158,11 +158,11 @@ export const lowerSecondaryProgramme: ProgrammePageContent = {
     },
   ],
   fees: {
-    amount: "$280",
+    amount: "$300",
     unit: "per 4 lessons",
     notes: [
       "Pro-rated for mid-term enrolments",
-      "Registration fee: $40 (one-time)",
+      "Registration fee: $50 (one-time)",
       "Material fees included",
     ],
   },
@@ -176,6 +176,6 @@ export const lowerSecondaryProgramme: ProgrammePageContent = {
     href: "/testimonials/",
   },
   enroll: {
-    body: "Classes are $280 per 4 lessons. Secure a spot in our Lower Secondary G3 classes or book a free trial at our Bukit Timah centre.",
+    body: "Classes are $300 per 4 lessons. Secure a spot in our Lower Secondary G3 classes or book a free trial at our Bukit Timah centre.",
   },
 };

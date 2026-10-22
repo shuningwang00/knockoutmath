@@ -28,7 +28,7 @@ export function organizationJsonLd(googleRating?: GooglePlaceRating | null) {
         logo: LOGO_URL,
         image: `${SITE_URL}/programmes/DSC08118.webp`,
         description:
-          "Math tuition centre in Bukit Timah, Singapore — Secondary, IP, and JC programmes helmed by ex-MOE tutors using the KICK Method.",
+          "Math tuition centre in Bukit Timah, Singapore — Primary, Secondary, and JC programmes helmed by ex-MOE tutors using the KICK Method.",
         telephone: CONTACT_PHONE,
         email: CONTACT_EMAIL,
         ...(googleRating

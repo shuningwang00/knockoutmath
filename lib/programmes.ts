@@ -8,6 +8,14 @@ export type ProgrammeCard = {
 
 export const homeProgrammes: ProgrammeCard[] = [
   {
+    title: "Upper Primary Math",
+    description:
+      "Give your child a strong PSLE foundation with our Primary Math tuition. We focus on heuristics and problem-solving strategies that go beyond school drilling, building the confidence and skills needed to tackle challenging PSLE questions.",
+    href: "/primary-psle-math-tuition/",
+    image: "/programmes/DSC08407.webp",
+    imageAlt: "Students in a Knockout Math classroom",
+  },
+  {
     title: "Lower Secondary G3 Math",
     description:
       "Build a strong math foundation with our Lower Secondary G3 Math tuition. Designed to support students transitioning into secondary school, we cover core topics with engaging methods to improve problem-solving skills and academic confidence.",
@@ -30,14 +38,6 @@ export const homeProgrammes: ProgrammeCard[] = [
     href: "/upper-secondary-a-math/",
     image: "/programmes/DSC08427.webp",
     imageAlt: "Students learning math at desks in class",
-  },
-  {
-    title: "Secondary 1 to 4 IP Math",
-    description:
-      "Strengthen your foundation and excel in the Integrated Programme (IP) with our specialised IP Math tuition. Our IP classes develop interdisciplinary critical thinking and advanced problem-solving skills needed for excellence in math.",
-    href: "/secondary-ip-math-tuition/",
-    image: "/programmes/DSC08407.webp",
-    imageAlt: "Tutor teaching trigonometry on the classroom whiteboard",
   },
   {
     title: "Junior College A-Level H2 Math",

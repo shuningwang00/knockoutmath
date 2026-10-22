@@ -91,7 +91,7 @@ function CategoryCard({ category }: { category: SampleNoteCategory }) {
 
 export default function SampleNotesSection() {
   return (
-    <section id="sample-notes" className="section-y scroll-mt-24 bg-white">
+    <section id="sample-notes" className="scroll-mt-24 bg-white py-10 md:py-14">
       <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
         <FadeIn>
           <header className="max-w-3xl">

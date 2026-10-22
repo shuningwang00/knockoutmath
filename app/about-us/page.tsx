@@ -1,17 +1,16 @@
-import Image from "next/image";
 import Link from "next/link";
 import AboutComparison from "@/components/about-comparison";
 import EnquirySection from "@/components/enquiry-section";
 import FadeIn from "@/components/fade-in";
 import PageHero from "@/components/page-hero";
 import PedagogySection from "@/components/pedagogy-section";
-import { aboutMission, teamSections } from "@/lib/about";
+import { aboutMission } from "@/lib/about";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
   title: "About Knockout Math | Leading Math Tuition Centre in Bukit Timah, Singapore",
   description:
-    "Meet Knockout Math — expert math tutors in Bukit Timah with 20+ years of MOE experience. Discover our mission, KICK Method, and why families choose us for Secondary, IP, and JC math tuition.",
+    "Meet Knockout Math — expert math tutors in Bukit Timah with 20+ years of MOE experience. Discover our mission, KICK Method, and why families choose us for Primary, Secondary, and JC math tuition.",
   path: "/about-us/",
 });
 
@@ -33,51 +32,6 @@ export default function AboutUsPage() {
         subtitle={aboutMission}
       />
 
-      <section className="section-y border-y border-zinc-200 bg-[#f6f4ef]">
-        <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
-          <FadeIn>
-            <h2 className="font-heading text-center text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
-              The Team
-            </h2>
-          </FadeIn>
-
-          <div className="mt-10 grid gap-8 lg:grid-cols-2">
-            {teamSections.map((section, index) => (
-              <FadeIn key={section.title} delay={index * 100}>
-                <article className="card-lift overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
-                <div className="relative aspect-[16/10] w-full">
-                  <Image
-                    src={
-                      index === 0
-                        ? "/programmes/DSC08407.webp"
-                        : "/programmes/DSC08232.webp"
-                    }
-                    alt={`Knockout Math ${section.title} team`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                </div>
-                <div className="p-6 md:p-8">
-                  <h3 className="font-heading text-xl font-black uppercase tracking-tight text-black md:text-2xl">
-                    {section.title}
-                  </h3>
-                  <p className="font-body mt-4 max-w-prose text-base leading-relaxed text-zinc-800">
-                    {section.body}
-                  </p>
-                  {"cta" in section && section.cta ? (
-                    <Link href={section.cta.href} className={`${ctaClassName} mt-6`}>
-                      {section.cta.label}
-                    </Link>
-                  ) : null}
-                </div>
-                </article>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <AboutComparison />
 
       <PedagogySection />
@@ -88,7 +42,7 @@ export default function AboutUsPage() {
             Find Out More
           </h2>
           <p className="font-body mx-auto mt-4 max-w-prose text-base leading-relaxed text-zinc-300">
-            Explore our programmes across Secondary, IP, and JC — or book a free trial at our
+            Explore our programmes across Primary, Secondary, and JC — or book a free trial at our
             Bukit Timah classrooms.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">

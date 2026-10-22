@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/site";
 
 export const DEFAULT_OG_IMAGE = "/og/share.png";
 export const DEFAULT_OG_IMAGE_ALT =
-  "Knockout Math — math tuition for Secondary, IP, and JC students in Bukit Timah";
+  "Knockout Math — math tuition for Primary, Secondary, and JC students in Bukit Timah";
 
 type PageMetadataInput = {
   /** Page title without the site suffix — layout template adds "| Knockout Math". */

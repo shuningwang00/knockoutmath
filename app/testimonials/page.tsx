@@ -11,7 +11,7 @@ import JsonLd from "@/components/json-ld";
 export const metadata = createPageMetadata({
   title: "Student Reviews & Success Stories | Math Tuition Singapore",
   description:
-    "Read what students and parents say about Knockout Math in Bukit Timah — real reviews from Secondary, IP, and JC math tuition with proven grade improvements.",
+    "Read what students and parents say about Knockout Math in Bukit Timah — real reviews from Primary, Secondary, and JC math tuition with proven grade improvements.",
   path: "/testimonials/",
 });
 

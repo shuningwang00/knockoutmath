@@ -24,13 +24,13 @@ export type SiteLink = {
 export const programmeLinks: SiteLink[] = [
   { label: "Schedule", href: "/schedule/" },
   { label: "Resources", href: "/resources/" },
+  { label: "Upper Primary Math", href: "/primary-psle-math-tuition/" },
   { label: "Lower Secondary Math", href: "/secondary-math-tuition/" },
   {
     label: "Upper Secondary E-Math",
     href: "/secondary-e-math-tuition-o-level/",
   },
   { label: "Upper Secondary A-Math", href: "/upper-secondary-a-math/" },
-  { label: "Secondary IP Math", href: "/secondary-ip-math-tuition/" },
   {
     label: "Junior College H2 Math",
     href: "/junior-college-h2-math-tuition/",
@@ -50,13 +50,13 @@ export const allSitePages: SiteLink[] = [
   { label: "Our Tutors", href: "/our-tutors/" },
   { label: "Schedule", href: "/schedule/" },
   { label: "Resources", href: "/resources/" },
+  { label: "Upper Primary Math", href: "/primary-psle-math-tuition/" },
   { label: "Lower Secondary Math", href: "/secondary-math-tuition/" },
   {
     label: "Upper Secondary E-Math",
     href: "/secondary-e-math-tuition-o-level/",
   },
   { label: "Upper Secondary A-Math", href: "/upper-secondary-a-math/" },
-  { label: "Secondary IP Math", href: "/secondary-ip-math-tuition/" },
   {
     label: "Junior College H2 Math",
     href: "/junior-college-h2-math-tuition/",

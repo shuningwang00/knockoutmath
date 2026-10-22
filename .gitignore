@@ -22,5 +22,8 @@ pnpm-debug.log*
 .env*
 !.env.example
 
+# last good classes sheet snapshot (local dev)
+/data/
+
 # typescript
 *.tsbuildinfo

@@ -69,7 +69,7 @@ export default function OpenGraphImage() {
               lineHeight: 1.4,
             }}
           >
-            Secondary · IP · JC · Bukit Timah, Singapore
+            Primary · Secondary · JC · Bukit Timah, Singapore
           </p>
         </div>
 

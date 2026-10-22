@@ -19,6 +19,7 @@ type FreeTrialPayload = {
   contact: string;
   level: string;
   school: string;
+  preferredClass?: string;
 };
 
 function isValidPayload(body: unknown): body is FreeTrialPayload {
@@ -60,6 +61,9 @@ export async function POST(request: Request) {
     const contact = body.contact.trim();
     const level = body.level.trim();
     const school = body.school.trim();
+    const preferredClass = String(
+      (body as FreeTrialPayload).preferredClass ?? "",
+    ).trim();
 
     const apiKey = getResendApiKey();
     if (!apiKey) {
@@ -88,6 +92,7 @@ export async function POST(request: Request) {
         <p><strong>Name:</strong> ${escapeHtml(name)}</p>
         <p><strong>Phone:</strong> ${escapeHtml(contact)}</p>
         <p><strong>Level:</strong> ${escapeHtml(level)}</p>
+        ${preferredClass ? `<p><strong>Preferred class:</strong> ${escapeHtml(preferredClass)}</p>` : ""}
         <p><strong>School:</strong> ${escapeHtml(school)}</p>
       `,
     });

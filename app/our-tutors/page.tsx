@@ -9,6 +9,7 @@ import { createPageMetadata } from "@/lib/seo";
 import { principalTutorJsonLd } from "@/lib/structured-data";
 import { SITE_URL } from "@/lib/site";
 import {
+  additionalTutors,
   principalTutor,
   tutorCredentials,
   tutorTimeline,
@@ -18,7 +19,7 @@ import {
 export const metadata = createPageMetadata({
   title: "Our Tutors | Expert Math Tutors in Bukit Timah",
   description:
-    "Meet the Knockout Math tutor team led by Principal Tutor Peng Junyang — 20+ years of MOE and tuition centre experience in Secondary, IP, and JC math.",
+    "Meet the Knockout Math tutor team led by Principal Tutor Peng Junyang — 20+ years of MOE and tuition centre experience in Primary, Secondary, and JC math.",
   path: "/our-tutors/",
   image: principalTutor.image,
   imageAlt: `${principalTutor.name} — Principal Tutor at Knockout Math`,
@@ -94,7 +95,7 @@ export default function OurTutorsPage() {
 
             <div>
               <p className="font-heading text-sm font-bold uppercase tracking-[0.16em] text-orange-500">
-                Principal tutor
+                Principal tutor &middot; JC Math
               </p>
               <h2 className="font-heading mt-2 text-3xl font-black uppercase tracking-tight text-black md:text-4xl">
                 {principalTutor.name}
@@ -129,6 +130,54 @@ export default function OurTutorsPage() {
           </div>
         </FadeIn>
       </section>
+
+      {additionalTutors.length > 0 && (
+        <section className="border-b border-zinc-200 bg-white">
+          <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
+            <FadeIn className="border-b border-zinc-100 py-10">
+              <h2 className="font-heading text-2xl font-black uppercase tracking-tight text-black md:text-3xl">
+                Meet the Team
+              </h2>
+            </FadeIn>
+            {additionalTutors.map((tutor, index) => (
+              <FadeIn key={tutor.name}>
+                <div className={`flex flex-col gap-8 border-b border-zinc-100 py-10 md:flex-row md:items-start md:gap-12 md:py-14 ${index % 2 === 1 ? "md:flex-row-reverse" : ""}`}>
+                  <div className="w-full shrink-0 overflow-hidden rounded-2xl border border-zinc-200 shadow-sm md:w-52">
+                    <Image
+                      src={tutor.image}
+                      alt={tutor.imageAlt}
+                      width={532}
+                      height={826}
+                      className="h-64 w-full object-cover object-top md:h-72"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-heading text-sm font-bold uppercase tracking-[0.16em] text-orange-500">
+                      {tutor.role}
+                    </p>
+                    <h3 className="font-heading mt-1 text-2xl font-black uppercase tracking-tight text-black md:text-3xl">
+                      {tutor.name}
+                    </h3>
+                    <p className="font-body mt-4 max-w-prose text-base leading-relaxed text-zinc-700">
+                      &ldquo;{tutor.bio}&rdquo;
+                    </p>
+                    {tutor.credentials.length > 0 && (
+                      <div className="mt-6 grid gap-4 border-t border-zinc-200 pt-6 sm:grid-cols-2 md:grid-cols-3">
+                        {tutor.credentials.map((item) => (
+                          <div key={item.title}>
+                            <h4 className="font-heading text-sm font-bold text-black">{item.title}</h4>
+                            <p className="font-body mt-1 text-sm leading-relaxed text-zinc-600">{item.detail}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="section-y border-y border-zinc-200 bg-[#f6f4ef]">
         <div className="mx-auto w-full max-w-6xl px-4 md:px-6">

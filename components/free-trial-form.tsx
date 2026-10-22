@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { freeTrialLevels } from "@/lib/free-trial";
 
 const inputClassName =
@@ -24,9 +24,25 @@ function ChevronDownIcon({ className }: { className?: string }) {
   );
 }
 
+type ClassOption = { id: string; value: string; label: string };
+
 export default function FreeTrialForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [classOptions, setClassOptions] = useState<ClassOption[]>([]);
+  const [classesLoading, setClassesLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/classes/?purpose=signup")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data?.options?.length) {
+          setClassOptions(data.options as ClassOption[]);
+        }
+      })
+      .catch(() => setClassOptions([]))
+      .finally(() => setClassesLoading(false));
+  }, []);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -40,6 +56,7 @@ export default function FreeTrialForm() {
       name: String(formData.get("name") ?? ""),
       contact: String(formData.get("contact") ?? ""),
       level: String(formData.get("level") ?? ""),
+      preferredClass: String(formData.get("preferredClass") ?? ""),
       school: String(formData.get("school") ?? ""),
       website: String(formData.get("website") ?? ""),
     };
@@ -116,6 +133,34 @@ export default function FreeTrialForm() {
           />
         </div>
       </div>
+
+      {classOptions.length > 0 ? (
+        <div>
+          <label htmlFor="trial-class" className="font-heading mb-2 block text-xs font-bold uppercase tracking-wide text-zinc-700">
+            Preferred class
+          </label>
+          <div className="relative">
+            <select
+              id="trial-class"
+              name="preferredClass"
+              required
+              defaultValue=""
+              className={`${inputClassName} cursor-pointer appearance-none pr-10`}
+              disabled={status === "loading" || classesLoading}
+            >
+              <option value="" disabled>
+                {classesLoading ? "Loading classes…" : "Select a class"}
+              </option>
+              {classOptions.map((opt) => (
+                <option key={opt.id} value={opt.label}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+            <ChevronDownIcon className="pointer-events-none absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-500" />
+          </div>
+        </div>
+      ) : null}
 
       <div>
         <label htmlFor="trial-level" className="font-heading mb-2 block text-xs font-bold uppercase tracking-wide text-zinc-700">

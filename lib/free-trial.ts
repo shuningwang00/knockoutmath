@@ -23,7 +23,7 @@ export const freeTrialLevels = [
   "Lower Secondary (Sec 1–2)",
   "Secondary E-Math",
   "Secondary A-Math",
-  "Secondary IP",
+
   "JC H1/H2 Math",
   "Others",
 ] as const;

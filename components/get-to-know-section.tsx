@@ -57,7 +57,7 @@ export default function GetToKnowSection() {
             <p className="font-body mt-6 max-w-prose text-base leading-relaxed text-zinc-800 md:text-[1.05rem]">
               At Knockout Math, our team of top math tutors brings more than just expertise — we
               bring passion, energy, and a fresh perspective on math tuition here at our Bukit Timah
-              classrooms. Whether it&apos;s Secondary Math tuition, IP math, or JC tuition,
+              classrooms. Whether it&apos;s Primary Math tuition, Secondary Math, or JC tuition,
               we&apos;re here to shape your child&apos;s success through proven strategies and
               personal guidance.
             </p>
@@ -70,8 +70,8 @@ export default function GetToKnowSection() {
             <SectionLink href="/about-us/" label="About Us" icon={<CircleLinkIcon />} />
 
             <p className="font-body mt-8 max-w-prose text-base leading-relaxed text-zinc-800 md:text-[1.05rem]">
-              Meet our principal tutor, explore our KICK Method pedagogy, and see how we help
-              students from Secondary through JC build lasting confidence in math.
+              Meet our tutors, explore our KICK Method pedagogy, and see how we help
+              students from Primary through JC build lasting confidence in math.
             </p>
 
             <SectionLink href="/our-tutors/" label="Our Tutors" icon={<CircleLinkIcon />} />

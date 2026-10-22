@@ -93,7 +93,6 @@ function SyllabusTermTable({ terms }: { terms: ProgrammeTerm[] }) {
             className={`${TERM_HEADER_COLORS[index % TERM_HEADER_COLORS.length]} border-b border-black px-2.5 py-2 text-center`}
           >
             <p className="font-heading text-sm font-bold text-black">{term.name}</p>
-            <p className="font-body text-xs text-black/80">{term.dates}</p>
           </div>
 
           <div className="min-h-[1.25rem] bg-[#f6f4ef] px-2.5 py-2">
@@ -187,11 +186,13 @@ export function ProgrammeSyllabus({
   return (
     <section className="section-y border-y border-zinc-200 bg-[#f6f4ef]">
       <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
-        <FadeIn>
-          <h2 className="font-heading text-center text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
-            Scheme of Work
-          </h2>
-        </FadeIn>
+        {!!syllabi?.length && (
+          <FadeIn>
+            <h2 className="font-heading text-center text-2xl font-black uppercase tracking-tight text-black md:text-4xl">
+              Scheme of Work
+            </h2>
+          </FadeIn>
+        )}
 
         <div className="mt-10 space-y-14">
           {syllabi?.map((syllabus, index) => (
@@ -226,7 +227,7 @@ export function ProgrammeSyllabus({
                 </h3>
                 <p className="font-body mt-3 max-w-prose text-sm leading-relaxed text-zinc-800 md:text-base">
                   {fees.intro ??
-                    "Straightforward pricing for our Secondary 1 and 2 G3 classes — materials included, with pro-rated options if you join mid-term."}
+                    "Straightforward pricing — materials included, with pro-rated options if you join mid-term."}
                 </p>
               </div>
 

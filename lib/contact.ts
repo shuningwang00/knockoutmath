@@ -107,6 +107,6 @@ export const contactFaqs: ContactFaq[] = [
     id: "teachers",
     question: "What qualifications do your teachers have?",
     answer:
-      "Our tutors include both ex-MOE educators and specialist coaches from competitive exam backgrounds — giving students the best of classroom pedagogy and results-focused strategy. Every tutor is personally selected and developed through Knockout Math's Teacher Training Programme (TTP), with Principal Tutor Peng Junyang mentoring the team on curriculum, delivery, and the KICK Method so every lesson meets Knockout standards across Secondary, IP, and JC programmes.",
+      "Our tutors include both ex-MOE educators and specialist coaches from competitive exam backgrounds — giving students the best of classroom pedagogy and results-focused strategy. Every tutor is personally selected and developed through Knockout Math's Teacher Training Programme (TTP), with Principal Tutor Peng Junyang mentoring the team on curriculum, delivery, and the KICK Method so every lesson meets Knockout standards across Primary, Secondary, and JC programmes.",
   },
 ];
