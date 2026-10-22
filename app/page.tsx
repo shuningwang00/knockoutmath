@@ -1,3 +1,4 @@
+import Link from "next/link";
 import EnquirySection from "@/components/enquiry-section";
 import FadeIn from "@/components/fade-in";
 import GetToKnowSection from "@/components/get-to-know-section";
@@ -50,7 +51,18 @@ export default function HomePage() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-[#f6f4ef]/88" aria-hidden />
-        <FadeIn className="relative z-10 mx-auto w-full max-w-4xl px-4 pb-6 pt-20 text-center md:px-6 md:pb-8 md:pt-28">
+        <FadeIn className="relative z-10 mx-auto w-full max-w-4xl px-4 pb-6 pt-8 text-center md:px-6 md:pb-8 md:pt-12">
+          <Link
+            href="/november-holiday-programmes/"
+            className="mb-8 inline-flex w-full max-w-xl flex-col items-center gap-1.5 rounded-2xl bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500 px-6 py-4 text-white shadow-lg transition hover:brightness-110 sm:flex-row sm:justify-between"
+          >
+            <p className="font-heading text-lg font-black uppercase tracking-tight text-center sm:text-left">
+              Free Nov &apos;26 Holiday Programmes — Open for Registration
+            </p>
+            <span className="font-heading shrink-0 rounded-full bg-white/20 px-4 py-2 text-sm font-bold uppercase tracking-[0.1em] backdrop-blur-sm">
+              Find out more →
+            </span>
+          </Link>
           <h1 className="font-heading mx-auto max-w-prose text-2xl font-black uppercase leading-snug tracking-tight text-black md:text-4xl md:leading-tight">
             Math tuition in Bukit Timah for Primary, Secondary & JC students
           </h1>

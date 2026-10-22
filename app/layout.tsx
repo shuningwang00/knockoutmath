@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/json-ld";
+import PromoPopup from "@/components/promo-popup";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import TeachingMarquee from "@/components/teaching-marquee";
@@ -48,6 +49,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className="min-h-screen bg-white font-sans text-black antialiased">
         <JsonLd data={organizationJsonLd(googleRating)} />
         <div className="flex min-h-screen flex-col">
+          <PromoPopup />
           <Navbar />
           <TeachingMarquee />
           <main className="font-body flex-1">{children}</main>
