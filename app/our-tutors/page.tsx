@@ -148,7 +148,7 @@ export default function OurTutorsPage() {
                       alt={tutor.imageAlt}
                       width={532}
                       height={826}
-                      className="h-64 w-full object-cover object-top md:h-72"
+                      className="aspect-square w-full object-cover object-top md:aspect-auto md:h-72"
                     />
                   </div>
                   <div className="flex-1">
