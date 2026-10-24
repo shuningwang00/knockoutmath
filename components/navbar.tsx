@@ -6,6 +6,7 @@ import Logo from "@/components/logo";
 import { primaryNavLinks, programmeLinks } from "@/lib/site";
 
 const mobileNavLinks = [
+  { label: "Home", href: "/" },
   ...primaryNavLinks.slice(0, 2),
   ...programmeLinks,
   ...primaryNavLinks.slice(2),
@@ -85,6 +86,9 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden items-center gap-7 md:flex">
+          <Link href="/" aria-label="Home" className="text-zinc-800 transition hover:text-black">
+            <HomeIcon />
+          </Link>
           <LinkItem href={primaryNavLinks[0].href} label={primaryNavLinks[0].label} />
           <LinkItem href={primaryNavLinks[1].href} label={primaryNavLinks[1].label} />
 
@@ -128,6 +132,7 @@ export default function Navbar() {
             </div>
           </div>
 
+          <LinkItem href="/schedule/" label="Schedule" />
           <LinkItem href={primaryNavLinks[2].href} label={primaryNavLinks[2].label} />
           <LinkItem href={primaryNavLinks[3].href} label={primaryNavLinks[3].label} />
 
@@ -187,6 +192,14 @@ function LinkItem({ href, label }: { href: string; label: string }) {
     >
       {label}
     </Link>
+  );
+}
+
+function HomeIcon() {
+  return (
+    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    </svg>
   );
 }
 

@@ -8,12 +8,14 @@ export const FACEBOOK_URL = "https://www.facebook.com/knockoutmath.sg/";
 export const INSTAGRAM_URL = "https://www.instagram.com/knockoutmath.sg/";
 export const YOUTUBE_URL = "https://www.youtube.com/@KnockoutMathSingapore";
 export const GOOGLE_MAPS_URL = mainBranch.mapsHref;
+export const TELEGRAM_URL = "https://t.me/knockoutmath";
 
 export const socialLinks: SiteLink[] = [
   { label: "Facebook", href: FACEBOOK_URL },
   { label: "Instagram", href: INSTAGRAM_URL },
   { label: "YouTube", href: YOUTUBE_URL },
   { label: "Google Maps", href: GOOGLE_MAPS_URL },
+  { label: "Telegram", href: TELEGRAM_URL },
 ];
 
 export type SiteLink = {

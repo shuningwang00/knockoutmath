@@ -10,16 +10,29 @@ const stats = [
     value: 82,
     label: "Distinction Rate",
     description: "Students scoring A/A* or Distinction",
+    suffix: "%",
+    ringFill: 82,
   },
   {
     value: 98,
     label: "Pass Rate",
     description: "Students achieving a passing grade",
+    suffix: "%",
+    ringFill: 98,
   },
   {
     value: 100,
     label: "Grade Improvement",
     description: "Students improved by at least one grade",
+    suffix: "%",
+    ringFill: 100,
+  },
+  {
+    value: 5,
+    label: "Google Rating",
+    description: "5-star rated on Google Reviews",
+    suffix: "★",
+    ringFill: 100,
   },
 ];
 
@@ -51,7 +64,7 @@ function StatCard({
   index: number;
 }) {
   const count = useCountUp(stat.value, 1500, inView);
-  const offset = inView ? CIRCUMFERENCE * (1 - stat.value / 100) : CIRCUMFERENCE;
+  const offset = inView ? CIRCUMFERENCE * (1 - stat.ringFill / 100) : CIRCUMFERENCE;
 
   return (
     <div className="flex flex-col items-center gap-4 text-center">
@@ -78,7 +91,7 @@ function StatCard({
         <div className="absolute inset-0 flex items-center justify-center">
           <span className="font-heading text-4xl font-black text-black">
             {count}
-            <span className="text-orange-500">%</span>
+            <span className="text-orange-500">{stat.suffix}</span>
           </span>
         </div>
       </div>
@@ -118,7 +131,7 @@ export default function StatsSection() {
             The numbers speak
           </h2>
         </div>
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-3 md:gap-6">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-6">
           {stats.map((stat, i) => (
             <StatCard key={stat.label} stat={stat} inView={inView} index={i} />
           ))}
