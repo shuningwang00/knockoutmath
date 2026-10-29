@@ -12,7 +12,7 @@ export const juniorCollegeH2MathProgramme: ProgrammePageContent = {
     title: "Junior College H2 Math Tuition",
     subtitle: "JC 1 Promo / JC 2 A-Level",
     intro:
-      "JC H2 Math demands strong problem-solving, logical reasoning, and confidence with complex application questions. Our JC H2 Math tutors use a structured approach that builds foundations, reinforces with smart practice, and finishes with high-level questions to simplify even the toughest topics.",
+      "JC H2 Math demands strong problem-solving, logical reasoning, and confidence with complex application questions. Our structured approach builds foundations, reinforces with smart practice, and finishes with high-level questions to simplify even the toughest topics.",
     image: "/programmes/DSC08136.webp",
     imageAlt: "JC students working through math problems with calculators",
   },
