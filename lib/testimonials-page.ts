@@ -62,6 +62,7 @@ type SupabaseRow = {
   results: string | null;
   quote: string | null;
   photos: unknown;
+  rating: number | null;
 };
 
 export async function fetchSupabaseTestimonials(): Promise<PageTestimonial[]> {
@@ -70,7 +71,7 @@ export async function fetchSupabaseTestimonials(): Promise<PageTestimonial[]> {
 
   const { data, error } = await supabase
     .from("testimonials")
-    .select("id, student_name, parent_name, written_by, level, schools, tutor, year, results, quote, photos")
+    .select("id, student_name, parent_name, written_by, level, schools, tutor, year, results, quote, photos, rating")
     .not("quote", "is", null)
     .neq("quote", "");
 
@@ -79,12 +80,12 @@ export async function fetchSupabaseTestimonials(): Promise<PageTestimonial[]> {
     return pageTestimonials;
   }
 
-  type Sortable = PageTestimonial & { _priority: number; _tutor: string | null };
+  type Sortable = PageTestimonial & { _ranking: number; _tutor: string | null };
 
   const mapped: Sortable[] = (data as SupabaseRow[])
     .filter((row) => row.quote?.trim())
     .map((row) => {
-      const { url: photo_url, kind: photo_kind, priority } = extractPhoto(row.photos);
+      const { url: photo_url, kind: photo_kind } = extractPhoto(row.photos);
       const name =
         row.written_by === "parent"
           ? (row.parent_name ?? row.student_name ?? "Anonymous")
@@ -98,14 +99,16 @@ export async function fetchSupabaseTestimonials(): Promise<PageTestimonial[]> {
         outcome: row.results ?? undefined,
         photo_url: photo_url ?? undefined,
         photo_kind: photo_kind ?? undefined,
-        _priority: priority,
+        _ranking: row.rating ?? 0,
         _tutor: row.tutor,
       };
     });
 
-  const sorted = [0, 1, 2]
-    .flatMap((p) => interleaveByTutor(mapped.filter((t) => t._priority === p)))
-    .map(({ _priority, _tutor, ...t }) => t as PageTestimonial);
+  // Group by star rating 5→1 (0 = unranked, goes last), interleave by tutor within each group
+  const starGroups = [5, 4, 3, 2, 1, 0];
+  const sorted = starGroups
+    .flatMap((stars) => interleaveByTutor(mapped.filter((t) => t._ranking === stars)))
+    .map(({ _ranking, _tutor, ...t }) => t as PageTestimonial);
 
   return sorted;
 }
