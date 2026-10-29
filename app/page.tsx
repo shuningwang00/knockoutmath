@@ -55,7 +55,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[#f6f4ef]/88" aria-hidden />
         <FadeIn className="relative z-10 mx-auto w-full max-w-4xl px-4 pb-6 pt-8 text-center md:px-6 md:pb-8 md:pt-12">
           <Link
-            href="/november-holiday-programmes/"
+            href="/holiday-math-programme/"
             className="mb-8 inline-flex w-full max-w-xl flex-col items-center gap-1.5 rounded-2xl bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500 px-6 py-4 text-white shadow-lg transition hover:brightness-110 sm:flex-row sm:justify-between"
           >
             <p className="font-heading text-lg font-black uppercase tracking-tight text-center sm:text-left">
