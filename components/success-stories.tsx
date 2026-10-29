@@ -1,6 +1,6 @@
 import Link from "next/link";
 import FadeIn from "@/components/fade-in";
-import { marqueeTestimonials, type Testimonial } from "@/lib/testimonials";
+import { marqueeTestimonials, toMarqueeTestimonial, type Testimonial } from "@/lib/testimonials";
 
 /** Desktop ~22s/card; mobile ~36s/card (set via CSS media query). */
 const SECONDS_PER_CARD_DESKTOP = 22;
@@ -13,11 +13,21 @@ function TestimonialBanner({ item }: { item: Testimonial }) {
       <p className="-mt-2 line-clamp-5 flex-1 text-sm leading-relaxed text-zinc-800 md:text-base">
         {item.quote}
       </p>
-      <div className="mt-3 border-t border-violet-100 pt-3">
-        <p className="font-bold text-black">{item.name}</p>
-        <p className="mt-0.5 text-xs font-semibold uppercase tracking-wide text-violet-700/70">
-          {item.detail}
-        </p>
+      <div className="mt-3 flex items-center gap-3 border-t border-violet-100 pt-3">
+        {item.photo_url && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={item.photo_url}
+            alt={item.name}
+            className="h-16 w-16 shrink-0 rounded-full object-cover object-center"
+          />
+        )}
+        <div>
+          <p className="font-bold text-black">{item.name}</p>
+          <p className="mt-0.5 text-xs font-semibold uppercase tracking-wide text-violet-700/70">
+            {item.detail}
+          </p>
+        </div>
       </div>
     </article>
   );
@@ -53,7 +63,19 @@ function TestimonialMarqueeRow({ items }: { items: Testimonial[] }) {
   );
 }
 
-export default function SuccessStories() {
+export default async function SuccessStories() {
+  let items: Testimonial[];
+  try {
+    const { fetchSupabaseTestimonials } = await import("@/lib/testimonials-page");
+    const all = await fetchSupabaseTestimonials();
+    const withFacePhoto = all.filter((t) => t.photo_kind === "face");
+    items = withFacePhoto.length > 0
+      ? withFacePhoto.map(toMarqueeTestimonial)
+      : marqueeTestimonials;
+  } catch {
+    items = marqueeTestimonials;
+  }
+
   return (
     <section
       id="our-story"
@@ -77,7 +99,7 @@ export default function SuccessStories() {
       </div>
 
       <div className="mt-5 overflow-hidden md:mt-6">
-        <TestimonialMarqueeRow items={marqueeTestimonials} />
+        <TestimonialMarqueeRow items={items} />
       </div>
 
       <FadeIn>

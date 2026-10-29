@@ -5,7 +5,110 @@ export type PageTestimonial = {
   school: string;
   year?: string;
   outcome?: string;
+  photo_url?: string;
+  photo_kind?: string;
 };
+
+const TUTOR_ROTATION = ["Mr Peng", "Ms Koh", "Ms Khoo"] as const;
+
+function getTutorKey(tutor: string | null): string | null {
+  if (!tutor) return null;
+  if (tutor.includes("Peng")) return "Mr Peng";
+  if (tutor.includes("Khoo")) return "Ms Khoo";
+  if (tutor.includes("Koh")) return "Ms Koh";
+  return null;
+}
+
+const SUPABASE_STORAGE_URL = `https://ogdkmuzaerzxecslkfwf.supabase.co/storage/v1/object/public`;
+const PHOTO_BUCKET = "testimonials";
+
+function extractPhoto(photos: unknown): { url: string | null; kind: string | null; priority: number } {
+  if (!photos) return { url: null, kind: null, priority: 2 };
+  const items = Array.isArray(photos) ? photos : [];
+  const face = items.find((p: { kind?: string }) => p.kind === "face");
+  if (face?.path) return { url: `${SUPABASE_STORAGE_URL}/${PHOTO_BUCKET}/${face.path}`, kind: "face", priority: 0 };
+  const other = items.find((p: { kind?: string; path?: string }) => p.path);
+  if (other?.path) return { url: `${SUPABASE_STORAGE_URL}/${PHOTO_BUCKET}/${other.path}`, kind: other.kind ?? "other", priority: 1 };
+  return { url: null, kind: null, priority: 2 };
+}
+
+function interleaveByTutor<T extends { _tutor: string | null }>(items: T[]): T[] {
+  const buckets = Object.fromEntries(TUTOR_ROTATION.map((t) => [t, [] as T[]]));
+  const rest: T[] = [];
+  for (const item of items) {
+    const key = getTutorKey(item._tutor);
+    if (key) buckets[key].push(item);
+    else rest.push(item);
+  }
+  const result: T[] = [];
+  let i = 0;
+  while (TUTOR_ROTATION.some((k) => buckets[k].length > 0)) {
+    const key = TUTOR_ROTATION[i % TUTOR_ROTATION.length];
+    if (buckets[key].length) result.push(buckets[key].shift()!);
+    i++;
+  }
+  return [...result, ...rest];
+}
+
+type SupabaseRow = {
+  id: string;
+  student_name: string | null;
+  parent_name: string | null;
+  written_by: string | null;
+  level: string | null;
+  schools: string[] | null;
+  tutor: string | null;
+  year: number | null;
+  results: string | null;
+  quote: string | null;
+  photos: unknown;
+};
+
+export async function fetchSupabaseTestimonials(): Promise<PageTestimonial[]> {
+  const { createSupabaseClient } = await import("@/lib/supabase");
+  const supabase = createSupabaseClient();
+
+  const { data, error } = await supabase
+    .from("testimonials")
+    .select("id, student_name, parent_name, written_by, level, schools, tutor, year, results, quote, photos")
+    .not("quote", "is", null)
+    .neq("quote", "");
+
+  if (error || !data) {
+    console.error("Supabase testimonials error:", error);
+    return pageTestimonials;
+  }
+
+  type Sortable = PageTestimonial & { _priority: number; _tutor: string | null };
+
+  const mapped: Sortable[] = (data as SupabaseRow[])
+    .filter((row) => row.quote?.trim())
+    .map((row) => {
+      const { url: photo_url, kind: photo_kind, priority } = extractPhoto(row.photos);
+      const name =
+        row.written_by === "parent"
+          ? (row.parent_name ?? row.student_name ?? "Anonymous")
+          : (row.student_name ?? row.parent_name ?? "Anonymous");
+      return {
+        id: row.id,
+        quote: row.quote!,
+        name,
+        school: row.schools?.[0] ?? row.level ?? "",
+        year: row.year?.toString(),
+        outcome: row.results ?? undefined,
+        photo_url: photo_url ?? undefined,
+        photo_kind: photo_kind ?? undefined,
+        _priority: priority,
+        _tutor: row.tutor,
+      };
+    });
+
+  const sorted = [0, 1, 2]
+    .flatMap((p) => interleaveByTutor(mapped.filter((t) => t._priority === p)))
+    .map(({ _priority, _tutor, ...t }) => t as PageTestimonial);
+
+  return sorted;
+}
 
 export const pageTestimonials: PageTestimonial[] = [
   {

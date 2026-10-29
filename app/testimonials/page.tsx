@@ -3,7 +3,7 @@ import EnquirySection from "@/components/enquiry-section";
 import FadeIn from "@/components/fade-in";
 import GoogleReviewsBadge from "@/components/google-reviews-badge";
 import TestimonialCard from "@/components/testimonial-card";
-import { pageTestimonials } from "@/lib/testimonials-page";
+import { fetchSupabaseTestimonials } from "@/lib/testimonials-page";
 import { createPageMetadata } from "@/lib/seo";
 import { testimonialsJsonLd } from "@/lib/structured-data";
 import JsonLd from "@/components/json-ld";
@@ -21,7 +21,10 @@ const ctaClassName =
 const ctaOrangeClassName =
   "font-heading inline-flex rounded-full border-2 border-orange-500 bg-orange-500 px-8 py-3.5 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-orange-600";
 
-export default function TestimonialsPage() {
+export const revalidate = 3600;
+
+export default async function TestimonialsPage() {
+  const pageTestimonials = await fetchSupabaseTestimonials();
   return (
     <div>
       <JsonLd data={testimonialsJsonLd(pageTestimonials)} />
@@ -45,15 +48,42 @@ export default function TestimonialsPage() {
 
       <section className="border-b border-zinc-200 bg-[#f6f4ef] py-10 md:py-14">
         <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {pageTestimonials.map((testimonial, index) => (
-              <li key={testimonial.id}>
-                <FadeIn delay={(index % 3) * 80}>
-                  <TestimonialCard testimonial={testimonial} />
-                </FadeIn>
-              </li>
+          {/* 3-column masonry with left-to-right card order */}
+          <div className="hidden lg:flex lg:gap-6">
+            {[0, 1, 2].map((col) => (
+              <div key={col} className="flex flex-1 flex-col gap-6">
+                {pageTestimonials
+                  .filter((_, i) => i % 3 === col)
+                  .map((testimonial) => (
+                    <FadeIn key={testimonial.id} delay={col * 80}>
+                      <TestimonialCard testimonial={testimonial} />
+                    </FadeIn>
+                  ))}
+              </div>
             ))}
-          </ul>
+          </div>
+          {/* 2-column masonry for tablet */}
+          <div className="hidden gap-6 sm:flex lg:hidden">
+            {[0, 1].map((col) => (
+              <div key={col} className="flex flex-1 flex-col gap-6">
+                {pageTestimonials
+                  .filter((_, i) => i % 2 === col)
+                  .map((testimonial) => (
+                    <FadeIn key={testimonial.id} delay={col * 80}>
+                      <TestimonialCard testimonial={testimonial} />
+                    </FadeIn>
+                  ))}
+              </div>
+            ))}
+          </div>
+          {/* Single column for mobile */}
+          <div className="flex flex-col gap-6 sm:hidden">
+            {pageTestimonials.map((testimonial) => (
+              <FadeIn key={testimonial.id}>
+                <TestimonialCard testimonial={testimonial} />
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -119,7 +119,7 @@ export default function Navbar() {
               }`}
             >
               <div className="rounded-xl border border-zinc-200 bg-[#f6f4ef] p-2 shadow-lg">
-                {programmeLinks.map((item) => (
+                {programmeLinks.filter((item) => item.href !== "/schedule/").map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}

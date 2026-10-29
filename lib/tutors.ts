@@ -17,7 +17,7 @@ export const tutorWelcomeParagraphs = [
 export const principalTutor = {
   name: "Peng Junyang",
   role: "Principal Tutor",
-  image: "/tutors/principal-junyang-new.png",
+  image: "/tutors/principal-junyang-v2.png",
   imageAlt: "Peng Junyang, Principal Tutor at Knockout Math",
 };
 

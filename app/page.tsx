@@ -13,6 +13,8 @@ import JsonLd from "@/components/json-ld";
 import { createPageMetadata } from "@/lib/seo";
 import { videoObjectJsonLd } from "@/lib/structured-data";
 
+export const revalidate = 3600;
+
 export const metadata = createPageMetadata({
   title: "Best Math Tuition in Singapore for Secondary & JC Students",
   description:

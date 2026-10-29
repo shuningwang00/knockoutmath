@@ -51,7 +51,7 @@ export default function OurTutorsPage() {
       />
       <PageHero eyebrow="Our team" title="Our Tutors" />
 
-      <section className="section-y border-b border-zinc-200 bg-[#f6f4ef] overflow-hidden">
+      <section className="py-10 md:py-12 border-b border-zinc-200 bg-[#f6f4ef] overflow-hidden">
         <FadeIn className="mx-auto w-full max-w-4xl px-4 md:px-6">
           <h2 className="font-heading text-2xl font-black uppercase tracking-tight text-black md:text-3xl">
             Director&apos;s Foreword
@@ -62,15 +62,7 @@ export default function OurTutorsPage() {
                 {paragraph}
               </p>
             ))}
-            <div className="hidden md:block md:float-right md:ml-10 md:w-80 md:-mt-16">
-              <Image
-                src="/tutors/Firefly_RemoveBackground.png"
-                alt="Peng Junyang, Principal Tutor at Knockout Math"
-                width={532}
-                height={826}
-                className="w-full h-auto"
-              />
-            </div>
+
             {tutorWelcomeParagraphs.slice(5).map((paragraph) => (
               <p key={paragraph} className="font-body mb-5 text-base leading-relaxed text-zinc-800 md:text-lg">
                 {paragraph}
@@ -89,18 +81,11 @@ export default function OurTutorsPage() {
         </FadeIn>
       </section>
 
-      <section className="border-b border-zinc-200 bg-[#f6f4ef]">
-        <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
-          <FadeIn className="border-b border-zinc-100 py-10">
-            <h2 className="font-heading text-2xl font-black uppercase tracking-tight text-black md:text-3xl">
-              Meet the Team
-            </h2>
-          </FadeIn>
-        </div>
-      </section>
-
-      <section className="section-y border-b border-zinc-200 bg-[#f6f4ef]">
+      <section className="py-10 md:py-12 border-b border-zinc-200 bg-[#f6f4ef]">
         <FadeIn className="mx-auto w-full max-w-6xl px-4 md:px-6">
+          <h2 className="font-heading mb-8 text-2xl font-black uppercase tracking-tight text-black md:text-3xl">
+            Meet the Team
+          </h2>
           <div className="grid gap-10 md:grid-cols-[minmax(0,320px)_1fr] md:items-start lg:gap-14">
             <div className="w-full md:mx-0 md:max-w-xs">
               <div className="card-lift overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">

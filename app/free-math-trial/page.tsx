@@ -89,17 +89,6 @@ export default function FreeMathTrialPage() {
         </div>
       </section>
 
-      <section className="border-t border-zinc-200 bg-black py-10 text-center md:py-12">
-        <div className="mx-auto w-full max-w-3xl px-4 md:px-6">
-          <blockquote className="font-body text-base leading-relaxed text-zinc-300 md:text-lg">
-            &ldquo;The free trial convinced us immediately. Within a term, my son&apos;s math
-            results went from borderline pass to B3.&rdquo;
-          </blockquote>
-          <p className="font-heading mt-3 text-xs font-bold uppercase tracking-[0.12em] text-orange-500 md:text-sm">
-            Mr Lim · Parent, Sec 3
-          </p>
-        </div>
-      </section>
     </div>
   );
 }

@@ -5,6 +5,7 @@ export type Testimonial = {
   quote: string;
   name: string;
   detail: string;
+  photo_url?: string;
 };
 
 const MARQUEE_QUOTE_MAX = 220;
@@ -16,7 +17,6 @@ function truncateQuote(quote: string, max = MARQUEE_QUOTE_MAX): string {
 }
 
 function formatDetail(testimonial: PageTestimonial): string {
-  if (testimonial.outcome) return testimonial.outcome;
   return testimonial.year
     ? `${testimonial.school} · ${testimonial.year}`
     : testimonial.school;
@@ -28,6 +28,7 @@ export function toMarqueeTestimonial(testimonial: PageTestimonial): Testimonial 
     quote: truncateQuote(testimonial.quote),
     name: testimonial.name,
     detail: formatDetail(testimonial),
+    photo_url: testimonial.photo_kind === "face" ? testimonial.photo_url : undefined,
   };
 }
 
